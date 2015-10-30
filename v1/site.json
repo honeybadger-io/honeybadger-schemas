@@ -37,7 +37,7 @@
     },
     "last_checked_at": {
       "id": "last_checked_at",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "retries": {
       "id": "retries",

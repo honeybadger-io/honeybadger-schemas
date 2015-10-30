@@ -40,6 +40,8 @@
       "id": "team_id",
       "type": ["integer", "null"]
     },
+    "users": {},
+    "sites": {},
     "environments": {
       "id": "environments",
       "type": "array",
@@ -96,11 +98,11 @@
     },
     "last_notice_at": {
       "id": "last_notice_at",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "earliest_notice_at": {
       "id": "earliest_notice_at",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "unresolved_fault_count": {
       "id": "unresolved_fault_count",

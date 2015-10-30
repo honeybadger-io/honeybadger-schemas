@@ -3,6 +3,10 @@
   "id": "/v1/fault.json#",
   "type": "object",
   "properties": {
+    "id": {
+      "id": "id",
+      "type": "integer"
+    },
     "project_id": {
       "id": "project_id",
       "type": "integer"
@@ -55,10 +59,6 @@
       "id": "tags",
       "type": "array",
       "items": {}
-    },
-    "id": {
-      "id": "id",
-      "type": "integer"
     },
     "assignee": {
       "id": "assignee",

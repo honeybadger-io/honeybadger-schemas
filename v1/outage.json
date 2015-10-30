@@ -17,7 +17,7 @@
     },
     "reason": {
       "id": "reason",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "headers": {
       "id": "headers",
