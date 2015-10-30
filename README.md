@@ -4,13 +4,40 @@ JSON schemas for Honeybadger API resources.
 
 ## Deployment
 
-TODO
+To deploy you must install Python and [aws-cli](https://github.com/aws/aws-cli):
+
+```sh
+brew install python && pip install awscli
+```
+
+You also need to configure aws-cli. Grab the security credentials for
+honeybadger-schemas from the shared keychain on Dropbox:
+
+```sh
+aws configure set preview.cloudfront true
+
+# You can use any of the configuration methods mentioned in the aws-cli README.
+export AWS_ACCESS_KEY_ID=[Key]
+export AWS_SECRET_ACCESS_KEY=[Secret Key]
+```
+
+Then to deploy:
+
+```sh
+# Test deployment. (optional)
+aws s3 sync public s3://honeybadger-schemas --acl public-read --dryrun
+
+# Deploy files.
+aws s3 sync public s3://honeybadger-schemas --acl public-read
+
+# It will take a while for the cache to invalidate.
+open http://honeybadger-schemas.s3-website-us-east-1.amazonaws.com
+```
 
 ## Serving locally via Pow
 
 ```sh
 gem install powder
-ln -s `pwd` public && touch index.html
 powder link schemas
 powder open
 ```
