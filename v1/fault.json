@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/v1/fault.json#",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "id": "project_id",
+      "type": "integer"
+    },
+    "klass": {
+      "id": "klass",
+      "type": "string"
+    },
+    "component": {
+      "id": "component",
+      "type": "string"
+    },
+    "action": {
+      "id": "action",
+      "type": "string"
+    },
+    "environment": {
+      "id": "environment",
+      "type": "string"
+    },
+    "resolved": {
+      "id": "resolved",
+      "type": "boolean"
+    },
+    "ignored": {
+      "id": "ignored",
+      "type": "boolean"
+    },
+    "created_at": {
+      "id": "created_at",
+      "type": "string"
+    },
+    "comments_count": {
+      "id": "comments_count",
+      "type": "integer"
+    },
+    "message": {
+      "id": "message",
+      "type": "string"
+    },
+    "notices_count": {
+      "id": "notices_count",
+      "type": "integer"
+    },
+    "last_notice_at": {
+      "id": "last_notice_at",
+      "type": "string"
+    },
+    "tags": {
+      "id": "tags",
+      "type": "array",
+      "items": {}
+    },
+    "id": {
+      "id": "id",
+      "type": "integer"
+    },
+    "assignee": {
+      "id": "assignee",
+      "type": ["string", "null"]
+    }
+  },
+  "additionalProperties": false,
+  "required": ["project_id", "klass", "component", "action", "environment", "resolved", "ignored", "created_at", "comments_count", "message", "notices_count", "last_notice_at", "tags", "id", "assignee"]
+}

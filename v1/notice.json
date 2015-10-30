@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/v1/notice.json#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "id",
+      "type": "integer"
+    },
+    "fault_id": {
+      "id": "fault_id",
+      "type": "integer"
+    },
+    "created_at": {
+      "id": "created_at",
+      "type": "string"
+    },
+    "token": {
+      "id": "token",
+      "type": "string"
+    },
+    "url": {
+      "id": "url",
+      "type": "string"
+    },
+    "server": {
+      "id": "server",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "deploy": {
+      "id": "deploy",
+      "type": "object",
+      "properties": {
+        "environment": {
+          "id": "environment",
+          "type": "string"
+        },
+        "revision": {
+          "id": "revision",
+          "type": "string"
+        },
+        "repository": {
+          "id": "repository",
+          "type": "string"
+        },
+        "local_username": {
+          "id": "local_username",
+          "type": "string"
+        },
+        "created_at": {
+          "id": "created_at",
+          "type": "string"
+        },
+        "url": {
+          "id": "url",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "context": {
+      "id": "context",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    },
+    "request": {
+      "id": "request",
+      "type": "object",
+      "properties": {
+        "url": {
+          "id": "url",
+          "type": "string"
+        },
+        "component": {
+          "id": "component",
+          "type": "string"
+        },
+        "action": {
+          "id": "action",
+          "type": "string"
+        },
+        "params": {
+          "id": "params",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        },
+        "session": {
+          "id": "session",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        },
+        "cgi_data": {
+          "id": "cgi_data",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false,
+      "required": ["url", "component", "action", "params", "session", "cgi_data"]
+    },
+    "error": {
+      "id": "error",
+      "type": "object",
+      "properties": {
+        "class": {
+          "id": "class",
+          "type": "string"
+        },
+        "message": {
+          "id": "message",
+          "type": "string"
+        },
+        "backtrace": {
+          "id": "backtrace",
+          "type": "array",
+          "items": {
+            "id": "77",
+            "type": "object",
+            "properties": {
+              "number": {
+                "id": "number",
+                "type": "string"
+              },
+              "file": {
+                "id": "file",
+                "type": "string"
+              },
+              "method": {
+                "id": "method",
+                "type": "string"
+              },
+              "context": {
+                "id": "context",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": ["number", "file", "method"]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": ["class", "message", "backtrace"]
+    }
+  },
+  "additionalProperties": false,
+  "required": ["id", "fault_id", "created_at", "token", "url", "server", "deploy", "context", "request", "error"]
+}
