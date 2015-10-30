@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/v1/events/outage",
+  "type": "object",
+  "properties": {
+    "event": {
+      "id": "event",
+      "type": "string"
+    },
+    "message": {
+      "id": "message",
+      "type": "string"
+    },
+    "project": {"$ref": "../definitions.json#/project"},
+    "site": {"$ref": "../definitions.json#/site"},
+    "outage": {"$ref": "../definitions.json#/outage"}
+  },
+  "additionalProperties": false,
+  "required": [
+    "event",
+    "message",
+    "project",
+    "site",
+    "outage"
+  ]
+}

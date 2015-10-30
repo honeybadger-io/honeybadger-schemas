@@ -1,0 +1,425 @@
+{
+  "project": {
+    "id": "project",
+    "type": "object",
+    "properties": {
+      "id": {
+        "id": "id",
+        "type": "integer"
+      },
+      "name": {
+        "id": "name",
+        "type": "string"
+      },
+      "token": {
+        "id": "token",
+        "type": "string"
+      },
+      "created_at": {
+        "id": "created_at",
+        "type": "string"
+      },
+      "disable_public_links": {
+        "id": "disable_public_links",
+        "type": "boolean"
+      },
+      "github_project": {
+        "id": "github_project",
+        "type": ["string", "null"]
+      },
+      "pivotal_project_id": {
+        "id": "pivotal_project_id",
+        "type": "string",
+        "type": ["string", "null"]
+      },
+      "asana_workspace_id": {
+        "id": "asana_workspace_id",
+        "type": ["string", "null"]
+      },
+      "team_id": {
+        "id": "team_id",
+        "type": ["integer", "null"]
+      },
+      "environments": {
+        "id": "environments",
+        "type": "array",
+        "items": {
+          "id": "0",
+          "type": "object",
+          "properties": {
+            "id": {
+              "id": "id",
+              "type": "integer"
+            },
+            "project_id": {
+              "id": "project_id",
+              "type": "integer"
+            },
+            "name": {
+              "id": "name",
+              "type": "string"
+            },
+            "notifications": {
+              "id": "notifications",
+              "type": "boolean"
+            },
+            "created_at": {
+              "id": "created_at",
+              "type": "string"
+            },
+            "updated_at": {
+              "id": "updated_at",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "owner": {
+        "id": "owner",
+        "type": "object",
+        "properties": {
+          "id": {
+            "id": "id",
+            "type": "integer"
+          },
+          "email": {
+            "id": "email",
+            "type": "string"
+          },
+          "name": {
+            "id": "name",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "email", "name"]
+      },
+      "last_notice_at": {
+        "id": "last_notice_at",
+        "type": "string"
+      },
+      "earliest_notice_at": {
+        "id": "earliest_notice_at",
+        "type": "string"
+      },
+      "unresolved_fault_count": {
+        "id": "unresolved_fault_count",
+        "type": "integer"
+      },
+      "fault_count": {
+        "id": "fault_count",
+        "type": "integer"
+      },
+      "active": {
+        "id": "active",
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false,
+    "required": ["id", "name", "token", "created_at", "disable_public_links", "github_project", "pivotal_project_id", "asana_workspace_id", "team_id", "environments", "owner", "last_notice_at", "earliest_notice_at", "unresolved_fault_count", "fault_count", "active"]
+  },
+  "fault": {
+    "id": "fault",
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "id": "project_id",
+        "type": "integer"
+      },
+      "klass": {
+        "id": "klass",
+        "type": "string"
+      },
+      "component": {
+        "id": "component",
+        "type": "string"
+      },
+      "action": {
+        "id": "action",
+        "type": "string"
+      },
+      "environment": {
+        "id": "environment",
+        "type": "string"
+      },
+      "resolved": {
+        "id": "resolved",
+        "type": "boolean"
+      },
+      "ignored": {
+        "id": "ignored",
+        "type": "boolean"
+      },
+      "created_at": {
+        "id": "created_at",
+        "type": "string"
+      },
+      "comments_count": {
+        "id": "comments_count",
+        "type": "integer"
+      },
+      "message": {
+        "id": "message",
+        "type": "string"
+      },
+      "notices_count": {
+        "id": "notices_count",
+        "type": "integer"
+      },
+      "last_notice_at": {
+        "id": "last_notice_at",
+        "type": "string"
+      },
+      "tags": {
+        "id": "tags",
+        "type": "array",
+        "items": {}
+      },
+      "id": {
+        "id": "id",
+        "type": "integer"
+      },
+      "assignee": {
+        "id": "assignee",
+        "type": ["string", "null"]
+      }
+    },
+    "additionalProperties": false,
+    "required": ["project_id", "klass", "component", "action", "environment", "resolved", "ignored", "created_at", "comments_count", "message", "notices_count", "last_notice_at", "tags", "id", "assignee"]
+  },
+  "notice": {
+    "id": "notice",
+    "type": "object",
+    "properties": {
+      "id": {
+        "id": "id",
+        "type": "integer"
+      },
+      "fault_id": {
+        "id": "fault_id",
+        "type": "integer"
+      },
+      "created_at": {
+        "id": "created_at",
+        "type": "string"
+      },
+      "token": {
+        "id": "token",
+        "type": "string"
+      },
+      "url": {
+        "id": "url",
+        "type": "string"
+      },
+      "server": {
+        "id": "server",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "deploy": {
+        "id": "deploy",
+        "type": "object",
+        "properties": {
+          "environment": {
+            "id": "environment",
+            "type": "string"
+          },
+          "revision": {
+            "id": "revision",
+            "type": "string"
+          },
+          "repository": {
+            "id": "repository",
+            "type": "string"
+          },
+          "local_username": {
+            "id": "local_username",
+            "type": "string"
+          },
+          "created_at": {
+            "id": "created_at",
+            "type": "string"
+          },
+          "url": {
+            "id": "url",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "context": {
+        "id": "context",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+      },
+      "request": {
+        "id": "request",
+        "type": "object",
+        "properties": {
+          "url": {
+            "id": "url",
+            "type": "string"
+          },
+          "component": {
+            "id": "component",
+            "type": "string"
+          },
+          "action": {
+            "id": "action",
+            "type": "string"
+          },
+          "params": {
+            "id": "params",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          },
+          "session": {
+            "id": "session",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          },
+          "cgi_data": {
+            "id": "cgi_data",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false,
+        "required": ["url", "component", "action", "params", "session", "cgi_data"]
+      },
+      "error": {
+        "id": "error",
+        "type": "object",
+        "properties": {
+          "class": {
+            "id": "class",
+            "type": "string"
+          },
+          "message": {
+            "id": "message",
+            "type": "string"
+          },
+          "backtrace": {
+            "id": "backtrace",
+            "type": "array",
+            "items": {
+              "id": "77",
+              "type": "object",
+              "properties": {
+                "number": {
+                  "id": "number",
+                  "type": "string"
+                },
+                "file": {
+                  "id": "file",
+                  "type": "string"
+                },
+                "method": {
+                  "id": "method",
+                  "type": "string"
+                },
+                "context": {
+                  "id": "context",
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": ["number", "file", "method"]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": ["class", "message", "backtrace"]
+      }
+    },
+    "additionalProperties": false,
+    "required": ["id", "fault_id", "created_at", "token", "url", "server", "deploy", "context", "request", "error"]
+  },
+  "site": {
+    "id": "site",
+    "type": "object",
+    "properties": {
+      "id": {
+        "id": "id",
+        "type": "string"
+      },
+      "name": {
+        "id": "name",
+        "type": "string"
+      },
+      "url": {
+        "id": "url",
+        "type": "string"
+      },
+      "frequency": {
+        "id": "frequency",
+        "type": "integer"
+      },
+      "match_type": {
+        "id": "match_type",
+        "type": "string"
+      },
+      "match": {
+        "id": "match",
+        "type": "string"
+      },
+      "state": {
+        "id": "state",
+        "type": "string"
+      },
+      "active": {
+        "id": "active",
+        "type": "boolean"
+      },
+      "last_checked_at": {
+        "id": "last_checked_at",
+        "type": "string"
+      },
+      "retries": {
+        "id": "retries",
+        "type": "integer"
+      },
+      "proxy": {
+        "id": "proxy",
+        "type": "integer"
+      }
+    },
+    "additionalProperties": false,
+    "required": ["id", "name", "url", "frequency", "match_type", "match", "state", "active", "last_checked_at", "retries", "proxy"]
+  },
+  "outage": {
+    "id": "outage",
+    "type": "object",
+    "properties": {
+      "down_at": {
+        "id": "down_at",
+        "type": "string"
+      },
+      "up_at": {
+        "id": "up_at",
+        "type": ["string", "null"]
+      },
+      "status": {
+        "id": "status",
+        "type": "integer"
+      },
+      "reason": {
+        "id": "reason",
+        "type": "string"
+      },
+      "headers": {
+        "id": "headers",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+      }
+    },
+    "additionalProperties": false,
+    "required": ["down_at", "up_at", "status", "reason", "headers"]
+  }
+}
