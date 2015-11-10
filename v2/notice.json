@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "/v2/notice.json#",
+  "id": "notice.json#",
   "type": "object",
   "properties": {
     "id": {

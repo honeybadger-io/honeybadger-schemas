@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "/v2/project.json#",
+  "id": "project.json#",
   "type": "object",
   "properties": {
     "id": {
