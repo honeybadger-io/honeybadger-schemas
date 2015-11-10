@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "/v1/outage.json#",
+  "id": "/v2/outage.json#",
   "type": "object",
   "properties": {
     "down_at": {

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "/v1/events/outage.json#",
+  "id": "/v2/events/outage.json#",
   "type": "object",
   "properties": {
     "event": {
@@ -11,9 +11,9 @@
       "id": "message",
       "type": "string"
     },
-    "project": {"$ref": "/v1/project.json#"},
-    "site": {"$ref": "/v1/site.json#"},
-    "outage": {"$ref": "/v1/outage.json#"}
+    "project": {"$ref": "/v2/project.json#"},
+    "site": {"$ref": "/v2/site.json#"},
+    "outage": {"$ref": "/v2/outage.json#"}
   },
   "additionalProperties": false,
   "required": [

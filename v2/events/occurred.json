@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "/v1/events/occurred.json#",
+  "id": "/v2/events/occurred.json#",
   "type": "object",
   "properties": {
     "event": {
@@ -11,9 +11,9 @@
       "id": "message",
       "type": "string"
     },
-    "project": {"$ref": "/v1/project.json#"},
-    "fault": {"$ref": "/v1/fault.json#"},
-    "notice": {"$ref": "/v1/notice.json#"}
+    "project": {"$ref": "/v2/project.json#"},
+    "fault": {"$ref": "/v2/fault.json#"},
+    "notice": {"$ref": "/v2/notice.json#"}
   },
   "additionalProperties": false,
   "required": [
