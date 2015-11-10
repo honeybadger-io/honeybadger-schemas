@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "project.json#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "id",
+      "type": "integer"
+    },
+    "name": {
+      "id": "name",
+      "type": "string"
+    },
+    "token": {
+      "id": "token",
+      "type": "string"
+    },
+    "created_at": {
+      "id": "created_at",
+      "type": "string"
+    },
+    "disable_public_links": {
+      "id": "disable_public_links",
+      "type": "boolean"
+    },
+    "github_project": {
+      "id": "github_project",
+      "type": ["string", "null"]
+    },
+    "pivotal_project_id": {
+      "id": "pivotal_project_id",
+      "type": "string",
+      "type": ["string", "null"]
+    },
+    "asana_workspace_id": {
+      "id": "asana_workspace_id",
+      "type": ["string", "null"]
+    },
+    "team_id": {
+      "id": "team_id",
+      "type": ["integer", "null"]
+    },
+    "users": {},
+    "sites": {},
+    "environments": {
+      "id": "environments",
+      "type": "array",
+      "items": {
+        "id": "0",
+        "type": "object",
+        "properties": {
+          "id": {
+            "id": "id",
+            "type": "integer"
+          },
+          "project_id": {
+            "id": "project_id",
+            "type": "integer"
+          },
+          "name": {
+            "id": "name",
+            "type": "string"
+          },
+          "notifications": {
+            "id": "notifications",
+            "type": "boolean"
+          },
+          "created_at": {
+            "id": "created_at",
+            "type": "string"
+          },
+          "updated_at": {
+            "id": "updated_at",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "owner": {
+      "id": "owner",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "id",
+          "type": "integer"
+        },
+        "email": {
+          "id": "email",
+          "type": "string"
+        },
+        "name": {
+          "id": "name",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["id", "email", "name"]
+    },
+    "last_notice_at": {
+      "id": "last_notice_at",
+      "type": ["string", "null"]
+    },
+    "earliest_notice_at": {
+      "id": "earliest_notice_at",
+      "type": ["string", "null"]
+    },
+    "unresolved_fault_count": {
+      "id": "unresolved_fault_count",
+      "type": "integer"
+    },
+    "fault_count": {
+      "id": "fault_count",
+      "type": "integer"
+    },
+    "active": {
+      "id": "active",
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["id", "name", "token", "created_at", "disable_public_links", "github_project", "pivotal_project_id", "asana_workspace_id", "team_id", "environments", "owner", "last_notice_at", "earliest_notice_at", "unresolved_fault_count", "fault_count", "active"]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "outage.json#",
+  "type": "object",
+  "properties": {
+    "down_at": {
+      "id": "down_at",
+      "type": "string"
+    },
+    "up_at": {
+      "id": "up_at",
+      "type": ["string", "null"]
+    },
+    "status": {
+      "id": "status",
+      "type": "integer"
+    },
+    "reason": {
+      "id": "reason",
+      "type": ["string", "null"]
+    },
+    "headers": {
+      "id": "headers",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "required": ["down_at", "up_at", "status", "reason", "headers"]
+}

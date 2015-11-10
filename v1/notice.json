@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "notice.json#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "id",
+      "type": "integer"
+    },
+    "fault_id": {
+      "id": "fault_id",
+      "type": "integer"
+    },
+    "message": {
+      "id": "message",
+      "type": "string"
+    },
+    "created_at": {
+      "id": "created_at",
+      "type": "string"
+    },
+    "token": {
+      "id": "token",
+      "type": "string"
+    },
+    "url": {
+      "id": "url",
+      "type": "string"
+    },
+    "environment": {
+      "id": "environment",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    },
+    "web_environment": {
+      "id": "web_environment",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
+    },
+    "application_trace": {
+      "id": "application_trace",
+      "type": "array",
+      "items": {
+        "id": "77",
+        "type": "object",
+        "properties": {
+          "number": {
+            "id": "number",
+            "type": "string"
+          },
+          "file": {
+            "id": "file",
+            "type": "string"
+          },
+          "method": {
+            "id": "method",
+            "type": "string"
+          },
+          "context": {
+            "id": "context",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["number", "file", "method"]
+      }
+    },
+    "backtrace": {
+      "id": "backtrace",
+      "type": "array",
+      "items": {
+        "id": "77",
+        "type": "object",
+        "properties": {
+          "number": {
+            "id": "number",
+            "type": "string"
+          },
+          "file": {
+            "id": "file",
+            "type": "string"
+          },
+          "method": {
+            "id": "method",
+            "type": "string"
+          },
+          "context": {
+            "id": "context",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["number", "file", "method"]
+      }
+    },
+    "deploy": {
+      "id": "deploy",
+      "type": ["object", "null"],
+      "properties": {
+        "environment": {
+          "id": "environment",
+          "type": "string"
+        },
+        "revision": {
+          "id": "revision",
+          "type": "string"
+        },
+        "repository": {
+          "id": "repository",
+          "type": "string"
+        },
+        "local_username": {
+          "id": "local_username",
+          "type": "string"
+        },
+        "created_at": {
+          "id": "created_at",
+          "type": "string"
+        },
+        "url": {
+          "id": "url",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "request": {
+      "id": "request",
+      "type": "object",
+      "properties": {
+        "url": {
+          "id": "url",
+          "type": ["string", "null"]
+        },
+        "component": {
+          "id": "component",
+          "type": ["string", "null"]
+        },
+        "action": {
+          "id": "action",
+          "type": ["string", "null"]
+        },
+        "params": {
+          "id": "params",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        },
+        "session": {
+          "id": "session",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        },
+        "context": {
+          "id": "context",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false,
+      "required": ["url", "component", "action", "params", "session", "context"]
+    }
+  },
+  "additionalProperties": false,
+  "required": ["id", "fault_id", "created_at", "token", "url", "backtrace", "application_trace", "request", "environment", "web_environment", "deploy"]
+}
