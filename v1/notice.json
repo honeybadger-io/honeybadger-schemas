@@ -27,7 +27,13 @@
       "id": "server",
       "type": "object",
       "properties": {},
-      "additionalProperties": false
+      "additionalProperties": true // TODO
+    },
+    "context": {
+      "id": "context",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": true
     },
     "deploy": {
       "id": "deploy",
@@ -66,15 +72,15 @@
       "properties": {
         "url": {
           "id": "url",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "component": {
           "id": "component",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "action": {
           "id": "action",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "params": {
           "id": "params",
@@ -141,12 +147,6 @@
       },
       "additionalProperties": false,
       "required": ["class", "message", "backtrace"]
-    },
-    "context": {
-      "id": "context",
-      "type": "object",
-      "properties": {},
-      "additionalProperties": true
     }
   },
   "additionalProperties": false,
