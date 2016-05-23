@@ -42,6 +42,12 @@ powder link schemas
 powder open
 ```
 
+## Testing in the Rails app
+
+These schemas are currently copied manually into our Rails repo at
+*spec/fixtures/schemas/*. Eventually we may gem-ify this repo to avoid the
+duplication.
+
 ## Tests
 
 TODO
