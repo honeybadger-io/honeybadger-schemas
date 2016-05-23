@@ -63,6 +63,10 @@
     "assignee": {
       "id": "assignee",
       "type": ["string", "null"]
+    },
+    "url": {
+      "id": "url",
+      "type": "string"
     }
   },
   "additionalProperties": false,
