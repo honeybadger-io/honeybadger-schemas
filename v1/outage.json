@@ -24,8 +24,12 @@
       "type": "object",
       "properties": {},
       "additionalProperties": true
+    },
+    "details_url": {
+      "id": "details_url",
+      "type": "string"
     }
   },
   "additionalProperties": false,
-  "required": ["down_at", "up_at", "status", "reason", "headers"]
+  "required": ["down_at", "up_at", "status", "reason", "headers", "details_url"]
 }

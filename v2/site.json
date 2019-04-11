@@ -46,8 +46,12 @@
     "proxy": {
       "id": "proxy",
       "type": "integer"
+    },
+    "details_url": {
+      "id": "details_url",
+      "type": "string"
     }
   },
   "additionalProperties": false,
-  "required": ["id", "name", "url", "frequency", "match_type", "match", "state", "active", "last_checked_at", "retries", "proxy"]
+  "required": ["id", "name", "url", "frequency", "match_type", "match", "state", "active", "last_checked_at", "retries", "proxy", "details_url"]
 }
