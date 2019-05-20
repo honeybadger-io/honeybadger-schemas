@@ -1,6 +1,15 @@
 # honeybadger-schemas
 
-JSON schemas for Honeybadger API resources.
+JSON schemas for public Honeybadger API resources.
+
+## APIs
+
+- Data Access
+  - [docs](https://docs.honeybadger.io/api/data.html)
+  - [schemas](./data/)
+- Exceptions
+  - [docs](https://docs.honeybadger.io/api/exceptions.html)
+  - [schemas](./exceptions/)
 
 ## Deployment
 
