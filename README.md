@@ -11,6 +11,20 @@ JSON schemas for public Honeybadger API resources.
   - [docs](https://docs.honeybadger.io/api/exceptions.html)
   - [schemas](./exceptions/)
 
+## How these are currently used
+
+- Remote download
+
+  The schemas are hosted remotely on s3. *honeybadger-services* currently
+  uses this method to download the latest schemas and verify our test fixture
+  data. See [Deployment](#deployment)
+
+- Testing in the Rails app
+
+  These schemas are currently copied manually into our Rails repo at
+  *spec/fixtures/schemas/*. Eventually we may gem-ify this repo to avoid the
+  duplication.
+
 ## Deployment
 
 To deploy you must install Python and [aws-cli](https://github.com/aws/aws-cli):
@@ -42,12 +56,6 @@ aws s3 sync public s3://honeybadger-schemas --acl public-read
 # It will take a while for the cache to invalidate.
 open http://honeybadger-schemas.s3-website-us-east-1.amazonaws.com
 ```
-
-## Testing in the Rails app
-
-These schemas are currently copied manually into our Rails repo at
-*spec/fixtures/schemas/*. Eventually we may gem-ify this repo to avoid the
-duplication.
 
 ## Tests
 
