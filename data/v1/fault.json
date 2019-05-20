@@ -67,6 +67,12 @@
     "url": {
       "id": "url",
       "type": "string"
+    },
+    "deploy": {
+      "anyOf":[
+        {"$ref": "deploy.json#"},
+        {"type": "null"}
+      ]
     }
   },
   "additionalProperties": false,

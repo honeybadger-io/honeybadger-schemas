@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "deploy.json#",
+  "type": "object",
+  "properties": {
+    "environment": {
+      "id": "environment",
+      "type": "string"
+    },
+    "revision": {
+      "id": "revision",
+      "type": "string"
+    },
+    "repository": {
+      "id": "repository",
+      "type": "string"
+    },
+    "local_username": {
+      "id": "local_username",
+      "type": "string"
+    },
+    "created_at": {
+      "id": "created_at",
+      "type": "string"
+    },
+    "url": {
+      "id": "url",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

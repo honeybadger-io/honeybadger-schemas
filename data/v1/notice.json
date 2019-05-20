@@ -96,35 +96,10 @@
       }
     },
     "deploy": {
-      "id": "deploy",
-      "type": ["object", "null"],
-      "properties": {
-        "environment": {
-          "id": "environment",
-          "type": "string"
-        },
-        "revision": {
-          "id": "revision",
-          "type": "string"
-        },
-        "repository": {
-          "id": "repository",
-          "type": "string"
-        },
-        "local_username": {
-          "id": "local_username",
-          "type": "string"
-        },
-        "created_at": {
-          "id": "created_at",
-          "type": "string"
-        },
-        "url": {
-          "id": "url",
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
+      "anyOf":[
+        {"$ref": "deploy.json#"},
+        {"type": "null"}
+      ]
     },
     "request": {
       "id": "request",
