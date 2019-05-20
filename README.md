@@ -34,14 +34,6 @@ aws s3 sync public s3://honeybadger-schemas --acl public-read
 open http://honeybadger-schemas.s3-website-us-east-1.amazonaws.com
 ```
 
-## Serving locally via Pow
-
-```sh
-gem install powder
-powder link schemas
-powder open
-```
-
 ## Testing in the Rails app
 
 These schemas are currently copied manually into our Rails repo at
