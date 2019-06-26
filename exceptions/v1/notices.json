@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "id": "exceptions/v1/notices.json",
   "type": "object",
   "properties": {
@@ -82,6 +82,14 @@
               "method": {
                 "id": "#/properties/notifier/error/backtrace/0/method",
                 "type": "string"
+              },
+              "args": {
+                "id": "#/properties/notifier/error/backtrace/0/args",
+                "type": "array",
+                "items": {
+                  "id": "#/properties/notifier/error/backtrace/0/args/0",
+                  "type": ["null", "boolean", "object", "array", "number", "string"]
+                }
               },
               "context": {
                 "id": "#/properties/notifier/error/backtrace/0/context",
