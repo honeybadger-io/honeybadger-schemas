@@ -83,6 +83,10 @@
                 "id": "#/properties/notifier/error/backtrace/0/method",
                 "type": "string"
               },
+              "class": {
+                "id": "#/properties/notifier/error/backtrace/0/class",
+                "type": "string"
+              },
               "args": {
                 "id": "#/properties/notifier/error/backtrace/0/args",
                 "type": "array",
@@ -149,6 +153,10 @@
                     },
                     "method": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/method",
+                      "type": "string"
+                    },
+                    "class": {
+                      "id": "#/properties/notifier/error/causes/0/backtrace/0/class",
                       "type": "string"
                     },
                     "context": {
