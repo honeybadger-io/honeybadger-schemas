@@ -3,6 +3,58 @@
   "id": "exceptions/v1/notices.json",
   "type": "object",
   "properties": {
+    "breadcrumbs": {
+      "id": "#/properties/breadcrumbs",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "id": "#/properties/breadcrumbs/enabled",
+          "type": "boolean"
+        },
+        "trail": {
+          "id": "#/properties/breadcrumbs/trail",
+          "type": "array",
+          "items": {
+            "id": "#/properties/breadcrumbs/trail/0",
+            "type": "object",
+            "properties": {
+              "category": {
+                "id": "#/properties/breadcrumbs/trail/0/category",
+                "type": "string"
+              },
+              "message": {
+                "id": "#/properties/breadcrumbs/trail/0/message",
+                "type": "string"
+              },
+              "timestamp": {
+                "id": "#/properties/breadcrumbs/trail/0/timestamp",
+                "format": "date-time",
+                "description": "iso8601 formatted with milliseconds",
+                "type": "string"
+              },
+              "metadata": {
+                "id": "#/properties/breadcrumbs/trail/0/metadata",
+                "type": "object",
+                "patternProperties": {
+                  ".*": { "type": ["null", "string", "number", "boolean"] }
+                }
+              }
+            },
+            "required": [
+              "category",
+              "message",
+              "timestamp"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "enabled",
+        "trail"
+      ],
+      "additionalProperties": false
+    },
     "notifier": {
       "id": "#/properties/notifier",
       "type": "object",
