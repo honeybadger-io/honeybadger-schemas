@@ -127,6 +127,10 @@
                 "id": "number",
                 "type": "string"
               },
+              "column": {
+                "id": "column",
+                "type": "string"
+              },
               "file": {
                 "id": "file",
                 "type": "string"

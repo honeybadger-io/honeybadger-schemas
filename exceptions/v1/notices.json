@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "exceptions/v1/notices.json",
   "type": "object",
   "properties": {
@@ -127,6 +127,13 @@
                   { "type": "integer" }
                 ]
               },
+              "column": {
+                "id": "#/properties/notifier/error/backtrace/0/column",
+                "anyOf": [
+                  { "type": "string" },
+                  { "type": "integer" }
+                ]
+              },
               "file": {
                 "id": "#/properties/notifier/error/backtrace/0/file",
                 "type": "string"
@@ -194,6 +201,13 @@
                   "properties": {
                     "number": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/number",
+                      "anyOf": [
+                        { "type": "string" },
+                        { "type": "integer" }
+                      ]
+                    },
+                    "column": {
+                      "id": "#/properties/notifier/error/causes/0/backtrace/0/column",
                       "anyOf": [
                         { "type": "string" },
                         { "type": "integer" }
