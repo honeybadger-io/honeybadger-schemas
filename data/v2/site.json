@@ -25,7 +25,7 @@
     },
     "match": {
       "id": "match",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "state": {
       "id": "state",
