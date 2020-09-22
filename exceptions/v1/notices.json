@@ -318,13 +318,6 @@
           }
         }
       },
-      "required": [
-        "url",
-        "params",
-        "session",
-        "cgi_data",
-        "context"
-      ],
       "additionalProperties": false
     },
     "server": {
