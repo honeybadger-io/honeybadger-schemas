@@ -353,7 +353,7 @@
           "type": "integer"
         },
         "revision": {
-          "id": "#/properties/notifier/server/project_root",
+          "id": "#/properties/notifier/server/revision",
           "type": "string"
         },
         "stats": {
