@@ -50,6 +50,10 @@
     "details_url": {
       "id": "details_url",
       "type": "string"
+    },
+    "cert_will_expire_at": {
+      "id": "cert_will_expire_at",
+      "type": ["string", "null"]
     }
   },
   "additionalProperties": false,
