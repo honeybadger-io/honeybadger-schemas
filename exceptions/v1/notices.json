@@ -3,6 +3,17 @@
   "id": "exceptions/v1/notices.json",
   "type": "object",
   "properties": {
+    "correlation_context": {
+      "id": "#/properties/correlation_context",
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "id": "#/properties/correlation_context/request_id",
+          "description": "The request id that this error is associated with",
+          "type": "string"
+        }
+      }
+    },
     "breadcrumbs": {
       "id": "#/properties/breadcrumbs",
       "type": "object",
