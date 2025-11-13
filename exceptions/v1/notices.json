@@ -3,6 +3,10 @@
   "id": "exceptions/v1/notices.json",
   "type": "object",
   "properties": {
+    "api_key": {
+      "type": "string",
+      "description": "The API key associated with the project the error is reporting to"
+    },
     "correlation_context": {
       "id": "#/properties/correlation_context",
       "type": "object",
@@ -10,7 +14,7 @@
         "request_id": {
           "id": "#/properties/correlation_context/request_id",
           "description": "The request id that this error is associated with",
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     },
@@ -81,6 +85,10 @@
         "version": {
           "id": "#/properties/notifier/notifier/version",
           "type": "string"
+        },
+        "language": {
+          "id": "#/properties/notifier/language",
+          "type": "string"
         }
       },
       "required": [
@@ -109,7 +117,7 @@
         },
         "fingerprint": {
           "id": "#/properties/notifier/error/fingerprint",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "tags": {
           "id": "#/properties/notifier/error/tags",
@@ -285,15 +293,15 @@
       "properties": {
         "url": {
           "id": "#/properties/notifier/request/url",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "component": {
           "id": "#/properties/notifier/request/component",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "action": {
           "id": "#/properties/notifier/request/action",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "context": {
           "id": "#/properties/notifier/request/context",
@@ -401,13 +409,6 @@
                   "type": "number"
                 }
               },
-              "required": [
-                "total",
-                "free",
-                "buffers",
-                "cached",
-                "free_total"
-              ],
               "additionalProperties": false
             },
             "load": {
@@ -427,18 +428,9 @@
                   "type": "number"
                 }
               },
-              "required": [
-                "one",
-                "five",
-                "fifteen"
-              ],
               "additionalProperties": false
             }
           },
-          "required": [
-            "mem",
-            "load"
-          ],
           "additionalProperties": false
         }
       },
