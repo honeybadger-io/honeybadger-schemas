@@ -262,6 +262,18 @@
                     "context": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/context",
                       "enum": [ "app", "all", null ]
+                    },
+                    "args": {
+                      "id": "#/properties/notifier/error/causes/0/backtrace/0/args",
+                      "type": ["array", "null"],
+                      "items": {
+                        "id": "#/properties/notifier/error/causes/0/backtrace/0/args/0",
+                        "type": ["null", "boolean", "object", "array", "number", "string"]
+                      }
+                    },
+                    "source": {
+                      "id": "#/properties/notifier/error/causes/0/backtrace/0/source",
+                      "type": ["object", "null"]
                     }
                   },
                   "required": [
