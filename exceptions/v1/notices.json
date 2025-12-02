@@ -5,11 +5,11 @@
   "properties": {
     "api_key": {
       "type": "string",
-      "description": "The API key associated with the project the error is reporting to"
+      "description": "The API key associated with the project the error is being reported to"
     },
     "correlation_context": {
       "id": "#/properties/correlation_context",
-      "type": "object",
+      "type": ["object", "null"],
       "properties": {
         "request_id": {
           "id": "#/properties/correlation_context/request_id",
@@ -20,7 +20,7 @@
     },
     "breadcrumbs": {
       "id": "#/properties/breadcrumbs",
-      "type": "object",
+      "type": ["object", "null"],
       "properties": {
         "enabled": {
           "id": "#/properties/breadcrumbs/enabled",
@@ -28,7 +28,7 @@
         },
         "trail": {
           "id": "#/properties/breadcrumbs/trail",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "id": "#/properties/breadcrumbs/trail/0",
             "type": "object",
@@ -49,10 +49,7 @@
               },
               "metadata": {
                 "id": "#/properties/breadcrumbs/trail/0/metadata",
-                "type": "object",
-                "patternProperties": {
-                  ".*": { "type": ["null", "string", "number", "boolean"] }
-                }
+                "type": ["object", "null"]
               }
             },
             "required": [
@@ -88,7 +85,7 @@
         },
         "language": {
           "id": "#/properties/notifier/language",
-          "type": "string"
+          "type": ["string", "null"]
         }
       },
       "required": [
@@ -104,7 +101,7 @@
       "properties": {
         "token": {
           "id": "#/properties/notifier/error/token",
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uuid"
         },
         "class": {
@@ -113,7 +110,7 @@
         },
         "message": {
           "id": "#/properties/notifier/error/message",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "fingerprint": {
           "id": "#/properties/notifier/error/fingerprint",
@@ -121,25 +118,25 @@
         },
         "tags": {
           "id": "#/properties/notifier/error/tags",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "id": "#/properties/notifier/error/tags/0",
-            "type": "string"
+            "type": ["string", "null"]
           }
         },
         "source": {
           "id": "#/properties/notifier/error/source",
-          "type": "object",
+          "type": ["object", "null"],
           "properties": {
             "1": {
               "id": "#/properties/notifier/error/source/1",
-              "type": "string"
+              "type": ["string", "null"]
             }
           }
         },
         "backtrace": {
           "id": "#/properties/notifier/error/backtrace",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "id": "#/properties/notifier/error/backtrace/0",
             "type": "object",
@@ -148,35 +145,37 @@
                 "id": "#/properties/notifier/error/backtrace/0/number",
                 "anyOf": [
                   { "type": "string" },
-                  { "type": "integer" }
+                  { "type": "integer" },
+                  { "type": "null" }
                 ]
               },
               "column": {
                 "id": "#/properties/notifier/error/backtrace/0/column",
                 "anyOf": [
                   { "type": "string" },
-                  { "type": "integer" }
+                  { "type": "integer" },
+                  { "type": "null" }
                 ]
               },
               "file": {
                 "id": "#/properties/notifier/error/backtrace/0/file",
-                "type": "string"
+                "type": ["string", "null"]
               },
               "method": {
                 "id": "#/properties/notifier/error/backtrace/0/method",
-                "type": "string"
+                "type": ["string", "null"]
               },
               "class": {
                 "id": "#/properties/notifier/error/backtrace/0/class",
-                "type": "string"
+                "type": ["string", "null"]
               },
               "type": {
                 "id": "#/properties/notifier/error/backtrace/0/type",
-                "type": "string"
+                "type": ["string", "null"]
               },
               "args": {
                 "id": "#/properties/notifier/error/backtrace/0/args",
-                "type": "array",
+                "type": ["array", "null"],
                 "items": {
                   "id": "#/properties/notifier/error/backtrace/0/args/0",
                   "type": ["null", "boolean", "object", "array", "number", "string"]
@@ -184,15 +183,15 @@
               },
               "context": {
                 "id": "#/properties/notifier/error/backtrace/0/context",
-                "enum": [ "app", "all" ]
+                "enum": [ "app", "all", null ]
               },
               "source": {
                 "id": "#/properties/notifier/error/backtrace/0/source",
-                "type": "object",
+                "type": ["object", "null"],
                 "properties": {
                   "1": {
                     "id": "#/properties/notifier/error/backtrace/0/source/1",
-                    "type": "string"
+                    "type": ["string", "null"]
                   }
                 }
               }
@@ -207,7 +206,7 @@
         },
         "causes": {
           "id": "#/properties/notifier/error/causes",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "id": "#/properties/notifier/error/causes/0",
             "type": "object",
@@ -218,11 +217,11 @@
               },
               "message": {
                 "id": "#/properties/notifier/error/causes/0/message",
-                "type": "string"
+                "type": ["string", "null"]
               },
               "backtrace": {
                 "id": "#/properties/notifier/error/causes/0/backtrace",
-                "type": "array",
+                "type": ["array", "null"],
                 "items": {
                   "id": "#/properties/notifier/error/causes/0/backtrace/0",
                   "type": "object",
@@ -231,35 +230,37 @@
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/number",
                       "anyOf": [
                         { "type": "string" },
-                        { "type": "integer" }
+                        { "type": "integer" },
+                        { "type": "null" }
                       ]
                     },
                     "column": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/column",
                       "anyOf": [
                         { "type": "string" },
-                        { "type": "integer" }
+                        { "type": "integer" },
+                        { "type": "null" }
                       ]
                     },
                     "file": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/file",
-                      "type": "string"
+                      "type": ["string", "null"]
                     },
                     "method": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/method",
-                      "type": "string"
+                      "type": ["string", "null"]
                     },
                     "class": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/class",
-                      "type": "string"
+                      "type": ["string", "null"]
                     },
                     "type": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/type",
-                      "type": "string"
+                      "type": ["string", "null"]
                     },
                     "context": {
                       "id": "#/properties/notifier/error/causes/0/backtrace/0/context",
-                      "enum": [ "app", "all" ]
+                      "enum": [ "app", "all", null ]
                     }
                   },
                   "required": [
@@ -289,7 +290,7 @@
     },
     "request": {
       "id": "#/properties/notifier/request",
-      "type": "object",
+      "type": ["object", "null"],
       "properties": {
         "url": {
           "id": "#/properties/notifier/request/url",
@@ -305,49 +306,27 @@
         },
         "context": {
           "id": "#/properties/notifier/request/context",
-          "type": "object"
+          "type": ["object", "null"]
         },
         "params": {
           "id": "#/properties/notifier/request/params",
-          "type": "object"
+          "type": ["object", "null"]
         },
         "session": {
           "id": "#/properties/notifier/request/session",
-          "type": "object"
+          "type": ["object", "null"]
         },
         "cgi_data": {
           "id": "#/properties/notifier/request/cgi_data",
-          "type": "object",
-          "properties": {
-            "REQUEST_METHOD": {
-              "id": "#/properties/notifier/request/cgi_data/REQUEST_METHOD",
-              "type": "string"
-            },
-            "REMOTE_ADDR": {
-              "id": "#/properties/notifier/request/cgi_data/REMOTE_ADDR",
-              "type": "string"
-            },
-            "HTTP_X_FORWARDED_FOR": {
-              "id": "#/properties/notifier/request/cgi_data/QUERY_STRING",
-              "type": "string"
-            },
-            "HTTP_HOST": {
-              "id": "#/properties/notifier/request/cgi_data/REMOTE_ADDR",
-              "type": "string"
-            },
-            "HTTP_USER_AGENT": {
-              "id": "#/properties/notifier/request/cgi_data/HTTP_USER_AGENT",
-              "type": "string"
-            },
-            "HTTP_COOKIE": {
-              "id": "#/properties/notifier/request/cgi_data/CONTENT_TYPE",
-              "type": "string"
-            },
-            "HTTP_REFERER": {
-              "id": "#/properties/notifier/request/cgi_data/HTTP_REFERER",
-              "type": "string"
-            }
-          }
+          "type": ["object", "null"]
+        },
+        "user": {
+          "id": "#/properties/notifier/request/user",
+          "type": ["object", "null"]
+        },
+        "local_variables": {
+          "id": "#/properties/notifier/request/local_variables",
+          "type": ["object", "null"]
         }
       },
       "additionalProperties": false
@@ -358,74 +337,74 @@
       "properties": {
         "project_root": {
           "id": "#/properties/notifier/server/project_root",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "environment_name": {
           "id": "#/properties/notifier/server/environment_name",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "hostname": {
           "id": "#/properties/notifier/server/hostname",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "time": {
           "id": "#/properties/notifier/server/time",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "pid": {
           "id": "#/properties/notifier/server/pid",
-          "type": "integer"
+          "type": ["integer", "null"]
         },
         "revision": {
           "id": "#/properties/notifier/server/revision",
-          "type": "string"
+          "type": ["string", "null"]
         },
         "stats": {
           "id": "#/properties/notifier/server/stats",
-          "type": "object",
+          "type": ["object", "null"],
           "properties": {
             "mem": {
               "id": "#/properties/notifier/server/stats/mem",
-              "type": "object",
+              "type": ["object", "null"],
               "properties": {
                 "total": {
                   "id": "#/properties/notifier/server/stats/mem/total",
-                  "type": "number"
+                  "type": ["number", "null"]
                 },
                 "free": {
                   "id": "#/properties/notifier/server/stats/mem/free",
-                  "type": "number"
+                  "type": ["number", "null"]
                 },
                 "buffers": {
                   "id": "#/properties/notifier/server/stats/mem/buffers",
-                  "type": "number"
+                  "type": ["number", "null"]
                 },
                 "cached": {
                   "id": "#/properties/notifier/server/stats/mem/cached",
-                  "type": "number"
+                  "type": ["number", "null"]
                 },
                 "free_total": {
                   "id": "#/properties/notifier/server/stats/mem/free_total",
-                  "type": "number"
+                  "type": ["number", "null"]
                 }
               },
               "additionalProperties": false
             },
             "load": {
               "id": "#/properties/notifier/server/stats/load",
-              "type": "object",
+              "type": ["object", "null"],
               "properties": {
                 "one": {
                   "id": "#/properties/notifier/server/stats/load/one",
-                  "type": "number"
+                  "type": ["number", "null"]
                 },
                 "five": {
                   "id": "#/properties/notifier/server/stats/load/five",
-                  "type": "number"
+                  "type": ["number", "null"]
                 },
                 "fifteen": {
                   "id": "#/properties/notifier/server/stats/load/fifteen",
-                  "type": "number"
+                  "type": ["number", "null"]
                 }
               },
               "additionalProperties": false
@@ -438,10 +417,7 @@
     },
     "details": {
       "id": "#/properties/notifier/details",
-      "type": "object",
-      "additionalProperties": {
-        "type": "object"
-      }
+      "type": ["object", "null"]
     }
   },
   "required": [
