@@ -85,7 +85,8 @@
         },
         "language": {
           "id": "#/properties/notifier/language",
-          "type": ["string", "null"]
+          "type": ["string", "null"],
+          "description": "The programming language of the notifier client"
         }
       },
       "required": [
