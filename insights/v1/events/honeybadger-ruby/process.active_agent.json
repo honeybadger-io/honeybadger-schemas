@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/process.active_agent.json",
+  "title": "ActiveAgent: process",
+  "description": "ActiveAgent process event. Payload passes through as-is from the underlying provider/framework.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "process.active_agent"
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Trace ID for correlating events within a single agent run."
+    },
+    "provider": {
+      "type": "string",
+      "description": "LLM provider name."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "event_type"
+  ]
+}

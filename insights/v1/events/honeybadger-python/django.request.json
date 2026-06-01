@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/django.request.json",
+  "title": "Django: request",
+  "description": "Completion of an HTTP request handled by a Django view. Emitted by DjangoHoneybadgerMiddleware after each response.",
+  "type": "object",
+  "properties": {
+    "event_type":  { "type": "string", "const": "django.request" },
+    "path":        { "type": "string", "description": "Request path, e.g. \"/users/42\"." },
+    "method":      { "type": "string", "description": "HTTP method, e.g. \"GET\", \"POST\"." },
+    "status":      { "type": "integer", "description": "HTTP response status code." },
+    "view":        { "type": "string", "description": "Resolved view function name." },
+    "module":      { "type": "string", "description": "Module containing the view function." },
+    "app":         { "type": "string", "description": "Django app name from the URL resolver." },
+    "duration":    { "type": "number", "description": "Request duration in milliseconds." },
+    "params":      { "type": "object", "description": "GET and POST params. Only present when include_params is enabled in insights_config.", "additionalProperties": true },
+    "request_id":  { "type": "string", "description": "Request ID from X-Request-ID header, request.id/request_id attribute, or a generated UUID. Set in event context at request start." }
+  },
+  "required": ["event_type", "path", "method"]
+}

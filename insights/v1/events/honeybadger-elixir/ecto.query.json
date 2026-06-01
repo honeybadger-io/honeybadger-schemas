@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/ecto.query.json",
+  "title": "Ecto: query",
+  "description": "A database query executed via an Ecto repository. The actual event_type is dynamic: it is derived from the repository's telemetry_prefix config plus [:query], e.g. [:my_app, :repo, :query] becomes \"my_app.repo.query\". Transaction bookkeeping, schema migrations, and Oban job table queries are excluded by default.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "description": "Dynamic event type derived from repo telemetry_prefix, e.g. \"my_app.repo.query\"."
+    },
+    "query": {
+      "type": "string",
+      "description": "Obfuscated SQL with bind parameters replaced by ?."
+    },
+    "source": {
+      "type": "string",
+      "description": "Table/source name the query targets."
+    },
+    "query_time": {
+      "type": "number",
+      "description": "Time spent executing the query in microseconds."
+    },
+    "decode_time": {
+      "type": "number",
+      "description": "Time spent decoding the result in microseconds."
+    },
+    "queue_time": {
+      "type": "number",
+      "description": "Time spent waiting for a database connection in microseconds."
+    },
+    "total_time": {
+      "type": "number",
+      "description": "Total time including queue, query, and decode in microseconds."
+    },
+    "stacktrace": {
+      "type": "array",
+      "description": "Formatted call stack at query time. Only present when include_stacktrace: true is configured and the repo has stacktrace: true enabled.",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "params": {
+      "type": "array",
+      "description": "Query parameters. Only present when include_params: true is configured.",
+      "items": {}
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext."
+    },
+    "idle_time": {
+      "type": "number",
+      "description": "Time the connection spent idle before the query in microseconds."
+    }
+  },
+  "required": [
+    "event_type",
+    "query"
+  ]
+}

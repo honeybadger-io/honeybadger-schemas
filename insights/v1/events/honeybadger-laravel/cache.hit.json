@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/cache.hit.json",
+  "title": "Laravel: cache.hit",
+  "description": "A cache key was found (hit).",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "cache.hit"
+    },
+    "key": {
+      "type": "string",
+      "description": "Cache key that was hit."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type",
+    "key"
+  ]
+}

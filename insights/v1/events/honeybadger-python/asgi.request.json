@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/asgi.request.json",
+  "title": "ASGI: request",
+  "description": "Completion of an HTTP request handled by an ASGI application (FastAPI, Starlette, etc.). Emitted by ASGIHoneybadger middleware.",
+  "type": "object",
+  "properties": {
+    "event_type":  { "type": "string", "const": "asgi.request" },
+    "path":        { "type": "string", "description": "Request path from the ASGI scope." },
+    "method":      { "type": "string", "description": "HTTP method, e.g. \"GET\", \"POST\"." },
+    "status":      { "type": "integer", "description": "HTTP response status code." },
+    "duration":    { "type": "number", "description": "Request duration in milliseconds." },
+    "params":      { "type": "object", "description": "Parsed query string params. Only present when include_params is enabled in insights_config.", "additionalProperties": true },
+    "request_id":  { "type": "string", "description": "Request ID from event context, if set." }
+  },
+  "required": ["event_type", "method", "path"]
+}

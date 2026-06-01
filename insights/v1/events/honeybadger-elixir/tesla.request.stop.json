@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/tesla.request.stop.json",
+  "title": "Tesla: request stop",
+  "description": "An outbound HTTP request via Tesla stoped. By default only the hostname is captured; enable full_url in insights_config for the full path. Finch-backed Tesla clients are deduplicated \u2014 only the Finch event is emitted if both are instrumented.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "tesla.request.stop"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method in uppercase, e.g. \"GET\", \"POST\"."
+    },
+    "host": {
+      "type": "string",
+      "description": "Destination hostname."
+    },
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP response status code."
+    },
+    "url": {
+      "type": "string",
+      "description": "Full request URL. Only present when full_url: true is configured."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Request round-trip duration in microseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext."
+    }
+  },
+  "required": [
+    "event_type",
+    "method",
+    "host"
+  ]
+}

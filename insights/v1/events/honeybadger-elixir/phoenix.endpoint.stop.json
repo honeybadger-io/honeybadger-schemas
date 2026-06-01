@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/phoenix.endpoint.stop.json",
+  "title": "Phoenix endpoint: stop",
+  "description": "Completion of an HTTP request handled by a Phoenix/Plug endpoint. One event per request. Emitted by Honeybadger.Insights.Plug, which subscribes to the Plug.Telemetry :stop event.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "phoenix.endpoint.stop"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\"."
+    },
+    "request_path": {
+      "type": "string",
+      "description": "Request path, e.g. \"/users/42\"."
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code."
+    },
+    "params": {
+      "type": "object",
+      "description": "Request params map.",
+      "additionalProperties": true
+    },
+    "route_type": {
+      "type": "string",
+      "enum": [
+        "controller",
+        "live",
+        "unknown"
+      ],
+      "description": "How the request was routed."
+    },
+    "controller": {
+      "type": "string",
+      "description": "Phoenix controller module name. Present when route_type is \"controller\"."
+    },
+    "action": {
+      "type": "string",
+      "description": "Controller action name. Present when route_type is \"controller\"."
+    },
+    "live_view": {
+      "type": "string",
+      "description": "LiveView module name. Present when route_type is \"live\"."
+    },
+    "live_action": {
+      "type": "string",
+      "description": "LiveView action atom. Present when route_type is \"live\"."
+    },
+    "format": {
+      "type": "string",
+      "description": "Response format, e.g. \"html\", \"json\"."
+    },
+    "view": {
+      "type": "string",
+      "description": "Phoenix view module name."
+    },
+    "template": {
+      "type": "string",
+      "description": "Template rendered."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Total request duration in microseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID set from the x-request-id response header or assigns. Present on all events fired within a request context."
+    }
+  },
+  "required": [
+    "event_type",
+    "method",
+    "request_path",
+    "status"
+  ]
+}

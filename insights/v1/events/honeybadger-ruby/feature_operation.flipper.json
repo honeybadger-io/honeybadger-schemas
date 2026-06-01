@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/feature_operation.flipper.json",
+  "title": "Flipper: feature_operation",
+  "description": "A Flipper feature flag check or mutation, instrumented by the Honeybadger plugin.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "feature_operation.flipper"
+    },
+    "feature_name": {
+      "type": "string",
+      "description": "Name of the Flipper feature flag."
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation performed, e.g. \"enabled?\", \"enable\", \"disable\"."
+    },
+    "result": {
+      "description": "Result of the operation \u2014 boolean for checks, varies for mutations."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration of the instrumented operation in milliseconds."
+    }
+  },
+  "required": [
+    "event_type",
+    "feature_name",
+    "operation"
+  ]
+}

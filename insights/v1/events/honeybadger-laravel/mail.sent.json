@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/mail.sent.json",
+  "title": "Laravel: mail.sent",
+  "description": "A mail message was sent successfully.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "mail.sent"
+    },
+    "to": {
+      "type": "string",
+      "description": "Comma-separated recipient addresses."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject."
+    },
+    "cc": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Comma-separated CC addresses."
+    },
+    "bcc": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Comma-separated BCC addresses."
+    },
+    "replyTo": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Comma-separated reply-to addresses."
+    },
+    "queue": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Queue name if the mail was queued."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-cli/report.system.disk.json",
+  "title": "CLI Agent: report.system.disk",
+  "description": "Disk partition usage metrics collected by the Honeybadger CLI agent. One event per non-pseudo partition per reporting interval.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "report.system.disk"
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname of the machine running the agent."
+    },
+    "ts": {
+      "type": "string",
+      "description": "ISO 8601 timestamp set by the CLI agent at collection time."
+    },
+    "mountpoint": {
+      "type": "string",
+      "description": "Mount point of the partition, e.g. \"/\" or \"/data\"."
+    },
+    "device": {
+      "type": "string",
+      "description": "Device path, e.g. \"/dev/sda1\"."
+    },
+    "fstype": {
+      "type": "string",
+      "description": "Filesystem type, e.g. \"ext4\", \"apfs\"."
+    },
+    "total_bytes": {
+      "type": "integer",
+      "description": "Total partition size in bytes."
+    },
+    "used_bytes": {
+      "type": "integer",
+      "description": "Used bytes."
+    },
+    "free_bytes": {
+      "type": "integer",
+      "description": "Free bytes."
+    },
+    "used_percent": {
+      "type": "number",
+      "description": "Usage as a percentage (0.0\u2013100.0), rounded to 2 decimal places."
+    }
+  },
+  "required": [
+    "event_type",
+    "host",
+    "mountpoint",
+    "total_bytes",
+    "used_bytes"
+  ]
+}

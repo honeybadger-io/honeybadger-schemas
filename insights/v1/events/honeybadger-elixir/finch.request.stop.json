@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/finch.request.stop.json",
+  "title": "Finch: request stop",
+  "description": "An outbound HTTP request via Finch completed (success, streaming, or error). By default only the hostname is captured; enable full_url in insights_config to include the full path.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "finch.request.stop"
+    },
+    "name": {
+      "type": "string",
+      "description": "Finch pool name."
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\"."
+    },
+    "host": {
+      "type": "string",
+      "description": "Destination hostname."
+    },
+    "url": {
+      "type": "string",
+      "description": "Full URL excluding query params. Only present when full_url: true is configured."
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code. Present on successful (non-streaming) responses."
+    },
+    "streaming": {
+      "type": "boolean",
+      "description": "True for streaming requests where no status code is available."
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if the request failed."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Request round-trip duration in microseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext."
+    }
+  },
+  "required": [
+    "event_type",
+    "name",
+    "method",
+    "host"
+  ]
+}

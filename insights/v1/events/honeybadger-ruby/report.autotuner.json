@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/report.autotuner.json",
+  "title": "Autotuner: report",
+  "description": "A tuning recommendation report from the Autotuner gem, forwarded by the Honeybadger plugin.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "report.autotuner"
+    },
+    "report": {
+      "type": "string",
+      "description": "Human-readable tuning recommendation text."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "report"
+  ]
+}

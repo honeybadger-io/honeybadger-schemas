@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/process_action.action_controller.json",
+  "title": "Rails controllers",
+  "description": "Completion of a Rails controller action \u2014 one event per HTTP request handled by the app. Carries the full request timing breakdown (total duration, plus db_runtime and view_runtime as components), the route/controller/action, and the response status.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "process_action.action_controller",
+      "description": "Insights event type discriminator."
+    },
+    "controller": {
+      "type": "string",
+      "description": "Controller class name, e.g. \"SearchController\"."
+    },
+    "action": {
+      "type": "string",
+      "description": "Action method on the controller, e.g. \"index\", \"destroy\"."
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\", \"PUT\"."
+    },
+    "path": {
+      "type": "string",
+      "description": "Request path, e.g. \"/follows\". Often high-cardinality due to ids."
+    },
+    "format": {
+      "type": "string",
+      "description": "Response format, e.g. \"html\", \"json\"."
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP status code returned to the client. Type-hint as ::int. Filter >= 500 for server errors, >= 400 for any error."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Total wall-clock time the action took, in milliseconds. Includes db_runtime and view_runtime."
+    },
+    "db_runtime": {
+      "type": "number",
+      "description": "Milliseconds spent in DB queries during this action."
+    },
+    "view_runtime": {
+      "type": "number",
+      "description": "Milliseconds spent rendering views during this action."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID \u2014 also present on sibling sql.active_record, render_*.action_view, and cache_*.active_support events from the same request."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber."
+    }
+  },
+  "required": [
+    "event_type",
+    "controller",
+    "action",
+    "status",
+    "duration"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/perform.sidekiq.json",
+  "title": "Sidekiq: perform",
+  "description": "A Sidekiq job execution. One event per job run.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "perform.sidekiq"
+    },
+    "jid": {
+      "type": "string",
+      "description": "Sidekiq job ID."
+    },
+    "worker": {
+      "type": "string",
+      "description": "Worker class name."
+    },
+    "queue": {
+      "type": "string",
+      "description": "Queue the job ran on."
+    },
+    "status": {
+      "type": "string",
+      "description": "Job outcome, e.g. \"success\", \"failure\"."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Execution duration in milliseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "jid",
+    "worker",
+    "queue"
+  ]
+}

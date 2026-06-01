@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger/notice.json",
+  "title": "Errors",
+  "description": "An occurrence of an unhandled error captured by a Honeybadger client. Multiple notices with the same root cause are grouped under a single fault_id. Use for any query about errors, exceptions, failures, or \"what's broken.\"",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "notice",
+      "description": "Insights event type discriminator."
+    },
+    "uuid": {
+      "type": "string",
+      "description": "Stable per-notice token (use to look up a specific notice in the UI)."
+    },
+    "ulid": {
+      "type": "string",
+      "description": "ULID for the notice — sortable, encodes the receive timestamp."
+    },
+    "fault_id": {
+      "type": "integer",
+      "description": "Aggregated error group ID. Group by this to count distinct errors."
+    },
+    "project_id": {
+      "type": "integer",
+      "description": "Project the notice belongs to."
+    },
+    "klass": {
+      "type": "string",
+      "description": "Error class name, e.g. \"NoMethodError\", \"ActiveRecord::RecordNotFound\"."
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message text from the exception."
+    },
+    "file": {
+      "type": "string",
+      "description": "Top-frame source file from the backtrace."
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Hostname of the server that reported the error."
+    },
+    "environment": {
+      "type": "string",
+      "description": "Deploy environment, e.g. \"production\", \"staging\"."
+    },
+    "revision": {
+      "type": "string",
+      "description": "Source revision (commit SHA) the app was running at."
+    },
+    "user": {
+      "type": "string",
+      "description": "Resolved from the project's user-search field (typically email or user_id). Use unique(user::str) to count affected users."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Per-request correlation id."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags applied to the notice."
+    },
+    "request": {
+      "type": "object",
+      "description": "HTTP request metadata from the error context.",
+      "properties": {
+        "url":            { "type": "string" },
+        "referer":        { "type": "string" },
+        "host":           { "type": "string" },
+        "request_method": { "type": "string" },
+        "remote_addr":    { "type": "string" }
+      }
+    },
+    "user_agent": {
+      "type": "object",
+      "description": "Parsed user-agent from the request.",
+      "properties": {
+        "browser": {
+          "type": "object",
+          "properties": {
+            "name":    { "type": "string" },
+            "major":   { "type": "string" },
+            "version": { "type": "string" }
+          }
+        },
+        "os": {
+          "type": "object",
+          "properties": {
+            "name":    { "type": "string" },
+            "version": { "type": "string" }
+          }
+        },
+        "device": {
+          "type": "object",
+          "properties": {
+            "model": { "type": "string" }
+          }
+        },
+        "bot": { "type": "boolean" }
+      }
+    },
+    "context": {
+      "type": "object",
+      "description": "Caller-supplied context hash. Common subkeys: context.user_email, context.user_id, context.username. Reference as context.<name>::str (or appropriate type).",
+      "additionalProperties": true
+    },
+    "session": {
+      "type": "object",
+      "description": "Caller-supplied session hash. Reference subkeys as session.<name>::type.",
+      "additionalProperties": true
+    },
+    "params": {
+      "type": "object",
+      "description": "HTTP params from the request. Reference subkeys as params.<name>::type.",
+      "additionalProperties": true
+    }
+  },
+  "required": ["event_type", "fault_id", "project_id", "klass", "message"]
+}

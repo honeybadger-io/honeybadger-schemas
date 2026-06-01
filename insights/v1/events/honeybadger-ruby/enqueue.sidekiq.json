@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/enqueue.sidekiq.json",
+  "title": "Sidekiq: enqueue",
+  "description": "A job was pushed onto a Sidekiq queue.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "enqueue.sidekiq"
+    },
+    "jid": {
+      "type": "string",
+      "description": "Sidekiq job ID."
+    },
+    "worker": {
+      "type": "string",
+      "description": "Worker class name."
+    },
+    "queue": {
+      "type": "string",
+      "description": "Queue the job was pushed to."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "jid",
+    "worker",
+    "queue"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/retry_stopped.active_job.json",
+  "title": "ActiveJob: retry_stopped",
+  "description": "A Rails ActiveJob retry stopped event.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "retry_stopped.active_job"
+    },
+    "job_class": {
+      "type": "string",
+      "description": "ActiveJob class name."
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Unique job identifier."
+    },
+    "queue_name": {
+      "type": "string",
+      "description": "Queue the job is on."
+    },
+    "adapter_class": {
+      "type": "string",
+      "description": "ActiveJob adapter class, e.g. \"SidekiqAdapter\"."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "job_class",
+    "job_id"
+  ]
+}

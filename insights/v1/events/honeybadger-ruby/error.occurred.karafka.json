@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/error.occurred.karafka.json",
+  "title": "Karafka: error.occurred",
+  "description": "An error raised inside a Karafka consumer or the framework itself.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "error.occurred.karafka"
+    },
+    "type": {
+      "type": "string",
+      "description": "Error type/source identifier, e.g. \"consumer.consume.error\"."
+    },
+    "error": {
+      "type": "string",
+      "description": "Exception class and message."
+    },
+    "topic": {
+      "type": "string",
+      "description": "Kafka topic the error occurred on, if applicable."
+    },
+    "partition": {
+      "type": "integer",
+      "description": "Kafka partition, if applicable."
+    },
+    "consumer_group": {
+      "type": "string",
+      "description": "Consumer group the error occurred in, if applicable."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "type",
+    "error"
+  ]
+}

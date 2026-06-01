@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/stats.puma.json",
+  "title": "Puma: stats",
+  "description": "Periodic Puma web server statistics snapshot emitted by the Honeybadger Puma plugin. In cluster mode one event is emitted per worker; in single mode one event per cycle. Fields come directly from Puma.stats.",
+  "type": "object",
+  "properties": {
+    "event_type":      { "type": "string", "const": "stats.puma" },
+    "worker":          { "type": "integer", "description": "Worker index in cluster mode. Absent in single mode." },
+    "pool_capacity":   { "type": "integer", "description": "Number of threads available to pick up new requests." },
+    "max_threads":     { "type": "integer", "description": "Maximum number of threads configured for this worker." },
+    "requests_count":  { "type": "integer", "description": "Total requests processed by this worker since start." },
+    "backlog":         { "type": "integer", "description": "Number of connections waiting for a thread." },
+    "running":         { "type": "integer", "description": "Number of threads currently running." },
+    "request_id":      { "type": "string", "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent." }
+  },
+  "required": ["event_type"]
+}

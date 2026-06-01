@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/redirect_to.action_controller.json",
+  "title": "ActionController: redirect_to",
+  "description": "A redirect issued by a Rails controller action.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "redirect_to.action_controller"
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP redirect status code, e.g. 301, 302."
+    },
+    "location": {
+      "type": "string",
+      "description": "URL the client is redirected to."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "status",
+    "location"
+  ]
+}

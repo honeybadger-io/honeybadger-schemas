@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/enqueue_all.active_job.json",
+  "title": "ActiveJob: enqueue_all",
+  "description": "A batch of ActiveJob jobs enqueued together.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "enqueue_all.active_job"
+    },
+    "adapter_class": {
+      "type": "string",
+      "description": "ActiveJob adapter class."
+    },
+    "jobs": {
+      "type": "array",
+      "description": "Jobs included in the batch.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "job_class": {
+            "type": "string"
+          },
+          "job_id": {
+            "type": "string"
+          },
+          "queue_name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

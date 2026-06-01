@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/notification.sending.json",
+  "title": "Laravel: notification.sending",
+  "description": "A notification is about to be sent.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "notification.sending"
+    },
+    "notification": {
+      "type": "string",
+      "description": "Notification class name."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Channel the notification is sent through, e.g. \"mail\", \"slack\"."
+    },
+    "notifiable": {
+      "type": "string",
+      "description": "Notifiable class name (the recipient model)."
+    },
+    "queue": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Queue name if the notification was queued."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type",
+    "notification",
+    "channel"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/consumer.consumed.karafka.json",
+  "title": "Karafka: consumer.consumed",
+  "description": "A batch of Kafka messages was successfully consumed by a Karafka consumer.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "consumer.consumed.karafka"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Kafka topic consumed from."
+    },
+    "partition": {
+      "type": "integer",
+      "description": "Kafka partition consumed from."
+    },
+    "consumer_group": {
+      "type": "string",
+      "description": "Consumer group identifier."
+    },
+    "consumer": {
+      "type": "string",
+      "description": "Consumer class name."
+    },
+    "processed": {
+      "type": "integer",
+      "description": "Number of messages processed in this batch."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Processing duration in milliseconds."
+    },
+    "processing_lag": {
+      "type": "integer",
+      "description": "Lag between message production and processing start, in milliseconds."
+    },
+    "consumption_lag": {
+      "type": "integer",
+      "description": "Lag between last committed offset and newest available offset, in milliseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "topic",
+    "partition",
+    "consumer_group",
+    "consumer"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/statistics_emitted.karafka.json",
+  "title": "Karafka: statistics_emitted",
+  "description": "Raw Kafka broker/consumer statistics emitted by the librdkafka statistics callback.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "statistics_emitted.karafka"
+    },
+    "consumer_group_id": {
+      "type": "string",
+      "description": "Karafka consumer group identifier."
+    },
+    "statistics": {
+      "type": "object",
+      "description": "Raw librdkafka statistics payload. Shape is defined by librdkafka; see https://github.com/confluentinc/librdkafka/blob/master/STATISTICS.md",
+      "additionalProperties": true
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "consumer_group_id"
+  ]
+}

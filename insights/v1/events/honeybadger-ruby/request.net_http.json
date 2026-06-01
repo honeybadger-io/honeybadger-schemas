@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/request.net_http.json",
+  "title": "Net::HTTP: request",
+  "description": "An outbound HTTP request made via Ruby's Net::HTTP, instrumented by the Honeybadger plugin.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "request.net_http"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\"."
+    },
+    "host": {
+      "type": "string",
+      "description": "Destination host."
+    },
+    "url": {
+      "type": "string",
+      "description": "Full request URL, if available."
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Round-trip duration in milliseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "method",
+    "host",
+    "duration"
+  ]
+}

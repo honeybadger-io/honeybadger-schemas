@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/request.handled.json",
+  "title": "Laravel: request.handled",
+  "description": "An HTTP request handled by a Laravel controller. Emitted by RequestHandled after the response is sent.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "request.handled"
+    },
+    "uri": {
+      "type": "string",
+      "description": "Full request URL."
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\"."
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "HTTP response status code."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in microseconds. The client emits a string with ms suffix (e.g. \"5.123ms\"); the ingestion pipeline converts it to microseconds."
+    },
+    "controller": {
+      "type": "string",
+      "description": "Controller class name."
+    },
+    "action": {
+      "type": "string",
+      "description": "Controller action method name."
+    },
+    "routeName": {
+      "type": "string",
+      "description": "Named route, if one is defined."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type",
+    "uri",
+    "method",
+    "statusCode"
+  ]
+}

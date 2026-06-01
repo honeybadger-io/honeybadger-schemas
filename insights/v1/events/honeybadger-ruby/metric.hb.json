@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/metric.hb.json",
+  "title": "Honeybadger Metric",
+  "description": "A gauge, counter, or histogram metric recorded via Honeybadger.gauge/counter/histogram. All metric types share this event_type; differentiate by metric_type.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "metric.hb"
+    },
+    "metric_name": {
+      "type": "string",
+      "description": "Name of the metric as passed to the recording call."
+    },
+    "metric_type": {
+      "type": "string",
+      "enum": [
+        "gauge",
+        "counter",
+        "histogram"
+      ],
+      "description": "The metric type."
+    },
+    "samples": {
+      "type": "integer",
+      "description": "Number of observations recorded in this flush window."
+    },
+    "value": {
+      "type": "number",
+      "description": "Metric value (gauge/counter) or summary statistic (histogram)."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    },
+    "metric_source": {
+      "type": "string",
+      "description": "Source plugin that recorded the metric, e.g. \"rails\", \"sidekiq\", \"solid_queue\", \"net_http\", \"puma\". Used to distinguish traits like rails_metrics, ruby_sidekiq_metrics, etc."
+    }
+  },
+  "additionalProperties": {
+    "description": "Additional dynamic attributes attached to the metric at recording time."
+  },
+  "required": [
+    "event_type",
+    "metric_name",
+    "metric_type"
+  ]
+}

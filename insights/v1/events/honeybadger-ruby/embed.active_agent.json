@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/embed.active_agent.json",
+  "title": "ActiveAgent: embed",
+  "description": "An embedding request made via ActiveAgent. One event per embeddings API call.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "embed.active_agent"
+    },
+    "provider": {
+      "type": "string",
+      "description": "LLM provider name."
+    },
+    "provider_module": {
+      "type": "string",
+      "description": "ActiveAgent provider module class name."
+    },
+    "model": {
+      "type": "string",
+      "description": "Embedding model identifier."
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Trace ID for correlating events within a single agent run."
+    },
+    "input_size": {
+      "type": "integer",
+      "description": "Number of input strings submitted for embedding."
+    },
+    "embedding_count": {
+      "type": "integer",
+      "description": "Number of embedding vectors returned."
+    },
+    "encoding_format": {
+      "type": "string",
+      "description": "Encoding format requested, e.g. \"float\"."
+    },
+    "dimensions": {
+      "type": "integer",
+      "description": "Embedding vector dimensions."
+    },
+    "response_model": {
+      "type": "string",
+      "description": "Model identifier as returned by the provider."
+    },
+    "response_id": {
+      "type": "string",
+      "description": "Provider-assigned response ID."
+    },
+    "usage": {
+      "type": "object",
+      "description": "Token usage reported by the provider.",
+      "properties": {
+        "input_tokens": {
+          "type": "integer"
+        },
+        "total_tokens": {
+          "type": "integer"
+        }
+      }
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "provider",
+    "model"
+  ]
+}

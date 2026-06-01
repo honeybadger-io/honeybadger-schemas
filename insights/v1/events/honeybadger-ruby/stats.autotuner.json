@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/stats.autotuner.json",
+  "title": "Autotuner: stats",
+  "description": "Ruby process memory and object metrics from Autotuner, emitted periodically by the Honeybadger plugin. Field names are dynamic and depend on the Autotuner version and enabled checks.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "stats.autotuner"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "additionalProperties": {
+    "type": "number",
+    "description": "Dynamic metric value (e.g. heap_allocated, heap_retained, live_objects, gc_count)."
+  },
+  "required": [
+    "event_type"
+  ]
+}

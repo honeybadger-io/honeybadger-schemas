@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/expire_fragment.action_controller.json",
+  "title": "Fragment cache: expire_fragment",
+  "description": "Rails ActionController fragment cache expire_fragment operation.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "expire_fragment.action_controller"
+    },
+    "key": {
+      "type": "string",
+      "description": "Fragment cache key."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "key"
+  ]
+}

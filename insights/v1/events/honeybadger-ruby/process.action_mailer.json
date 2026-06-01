@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/process.action_mailer.json",
+  "title": "ActionMailer: process",
+  "description": "A Rails ActionMailer message was generated. One event per mail action call.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "process.action_mailer"
+    },
+    "mailer": {
+      "type": "string",
+      "description": "Mailer class name, e.g. \"UserMailer\"."
+    },
+    "action": {
+      "type": "string",
+      "description": "Mailer action method, e.g. \"welcome_email\"."
+    },
+    "message_id": {
+      "type": "string",
+      "description": "Message-ID header of the generated email."
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line."
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Recipient addresses."
+    },
+    "cc": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "CC addresses."
+    },
+    "bcc": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "BCC addresses."
+    },
+    "date": {
+      "type": "string",
+      "description": "Email date header as a string."
+    },
+    "attachments": {
+      "type": "array",
+      "description": "File attachments included in the email.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "params": {
+      "type": "object",
+      "description": "Params passed to the mailer action.",
+      "additionalProperties": true
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "mailer",
+    "action"
+  ]
+}

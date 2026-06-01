@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-cli/report.system.cpu.json",
+  "title": "CLI Agent: report.system.cpu",
+  "description": "CPU and load average metrics collected by the Honeybadger CLI agent. Emitted once per reporting interval.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "report.system.cpu"
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname of the machine running the agent."
+    },
+    "ts": {
+      "type": "string",
+      "description": "ISO 8601 timestamp set by the CLI agent at collection time."
+    },
+    "used_percent": {
+      "type": "number",
+      "description": "CPU usage as a percentage (0.0\u2013100.0), rounded to 2 decimal places."
+    },
+    "load_avg_1": {
+      "type": "number",
+      "description": "1-minute load average."
+    },
+    "load_avg_5": {
+      "type": "number",
+      "description": "5-minute load average."
+    },
+    "load_avg_15": {
+      "type": "number",
+      "description": "15-minute load average."
+    },
+    "num_cpus": {
+      "type": "integer",
+      "description": "Number of logical CPUs."
+    }
+  },
+  "required": [
+    "event_type",
+    "host",
+    "used_percent"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/unpermitted_parameters.action_controller.json",
+  "title": "ActionController: unpermitted_parameters",
+  "description": "Strong parameters filtered out unpermitted keys from a Rails request.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "unpermitted_parameters.action_controller"
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Parameter keys that were not permitted."
+    },
+    "context": {
+      "type": "object",
+      "description": "Request context at the time of the violation.",
+      "properties": {
+        "controller": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "request": {
+          "type": "object"
+        }
+      }
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type",
+    "keys"
+  ]
+}

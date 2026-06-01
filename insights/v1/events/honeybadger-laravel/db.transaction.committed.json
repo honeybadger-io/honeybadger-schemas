@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/db.transaction.committed.json",
+  "title": "Laravel: db.transaction.committed",
+  "description": "A database transaction was committed.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "db.transaction.committed"
+    },
+    "connectionName": {
+      "type": "string",
+      "description": "Database connection name."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type",
+    "connectionName"
+  ]
+}

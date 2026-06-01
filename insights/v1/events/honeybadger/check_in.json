@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger/check_in.json",
+  "title": "Check-ins",
+  "description": "A heartbeat or report from a scheduled job or cron monitor. state indicates whether the run succeeded, failed, or reported its status.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "check_in",
+      "description": "Insights event type discriminator."
+    },
+    "check_in_id": {
+      "type": "string",
+      "description": "Stable identifier for the monitored check-in / job."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["reporting", "missing", "paused"],
+      "description": "Reported state of the run. reporting = the job sent a heartbeat for the scheduled window; missing = the window expired without a heartbeat; paused = the monitor is currently paused."
+    },
+    "payload": {
+      "type": "object",
+      "description": "Optional user-supplied body, only present on advanced check-ins. Shape is caller-defined; reference subkeys as payload.<name>::<type> and prefer @preview to inspect a sample before guessing field names.",
+      "additionalProperties": true
+    }
+  },
+  "required": ["event_type", "check_in_id", "state"]
+}

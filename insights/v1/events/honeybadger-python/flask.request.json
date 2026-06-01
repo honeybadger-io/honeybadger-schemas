@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/flask.request.json",
+  "title": "Flask: request",
+  "description": "Completion of an HTTP request handled by a Flask route. Emitted by FlaskHoneybadger on the request_finished signal.",
+  "type": "object",
+  "properties": {
+    "event_type":  { "type": "string", "const": "flask.request" },
+    "path":        { "type": "string", "description": "Request path, e.g. \"/users/42\"." },
+    "method":      { "type": "string", "description": "HTTP method, e.g. \"GET\", \"POST\"." },
+    "status":      { "type": "integer", "description": "HTTP response status code." },
+    "view":        { "type": "string", "description": "Flask endpoint name (request.endpoint)." },
+    "blueprint":   { "type": "string", "description": "Flask blueprint name, if the route belongs to one." },
+    "duration":    { "type": "number", "description": "Request duration in milliseconds." },
+    "params":      { "type": "object", "description": "Query and form params. Only present when include_params is enabled in insights_config.", "additionalProperties": true },
+    "request_id":  { "type": "string", "description": "Request ID from X-Request-ID header or a generated UUID. Set in event context at request start." }
+  },
+  "required": ["event_type", "path", "method"]
+}

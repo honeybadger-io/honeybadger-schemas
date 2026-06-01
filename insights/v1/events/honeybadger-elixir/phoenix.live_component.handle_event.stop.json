@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/phoenix.live_component.handle_event.stop.json",
+  "title": "LiveComponent: handle_event",
+  "description": "A LiveComponent handled a client event. One event per user interaction.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "phoenix.live_component.handle_event.stop"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL of the LiveView at the time of the event."
+    },
+    "socket_id": {
+      "type": "string",
+      "description": "LiveView socket ID."
+    },
+    "view": {
+      "type": "string",
+      "description": "LiveView module name."
+    },
+    "component": {
+      "type": "string",
+      "description": "LiveComponent module name, if applicable."
+    },
+    "assigns": {
+      "type": "object",
+      "description": "Socket assigns at the time of the event.",
+      "additionalProperties": true
+    },
+    "params": {
+      "type": "object",
+      "description": "Params passed to the event handler.",
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "string",
+      "description": "Event name for handle_event events."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in microseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID \u2014 generated at LiveView mount and propagated to all events on the same socket."
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

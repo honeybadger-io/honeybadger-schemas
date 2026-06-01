@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/db.transaction.rolledback.json",
+  "title": "Laravel: db.transaction.rolledback",
+  "description": "A database transaction was rolled back.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "db.transaction.rolledback"
+    },
+    "connectionName": {
+      "type": "string",
+      "description": "Database connection name."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type",
+    "connectionName"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/job.processed.json",
+  "title": "Laravel: job.processed",
+  "description": "A queue job completed processing. Emitted by JobProcessed.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "job.processed"
+    },
+    "connectionName": {
+      "type": "string",
+      "description": "Queue connection name, e.g. \"redis\", \"database\"."
+    },
+    "job": {
+      "type": "string",
+      "description": "Resolved job class name."
+    },
+    "id": {
+      "type": "string",
+      "description": "Job ID."
+    },
+    "attempts": {
+      "type": "integer",
+      "description": "Number of attempts made."
+    },
+    "hasFailed": {
+      "type": "boolean",
+      "description": "Whether the job was marked as failed."
+    },
+    "isReleased": {
+      "type": "boolean",
+      "description": "Whether the job was released back to the queue."
+    },
+    "isDeleted": {
+      "type": "boolean",
+      "description": "Whether the job was deleted from the queue."
+    },
+    "maxTries": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Maximum retry attempts allowed."
+    },
+    "maxExceptions": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Maximum exceptions before the job is failed."
+    },
+    "timeout": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Job timeout in seconds."
+    },
+    "retryUntil": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Timestamp after which the job should not be retried."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in microseconds. The client emits a string with ms suffix (e.g. \"5.123ms\"); the ingestion pipeline converts it to microseconds."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Alias \u2014 same value as requestId, present if set via event context."
+    }
+  },
+  "required": [
+    "event_type",
+    "connectionName",
+    "job",
+    "id"
+  ]
+}

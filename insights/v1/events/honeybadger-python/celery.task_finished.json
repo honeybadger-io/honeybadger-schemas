@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/celery.task_finished.json",
+  "title": "Celery: task_finished",
+  "description": "A Celery task completed (success or failure). Emitted by CeleryHoneybadger on the task_postrun signal.",
+  "type": "object",
+  "properties": {
+    "event_type":  { "type": "string", "const": "celery.task_finished" },
+    "task_id":     { "type": "string", "description": "Celery task UUID." },
+    "task_name":   { "type": "string", "description": "Fully qualified task name, e.g. \"myapp.tasks.send_email\"." },
+    "state":       { "type": "string", "description": "Final task state, e.g. \"SUCCESS\", \"FAILURE\", \"RETRY\"." },
+    "retries":     { "type": "integer", "description": "Number of retries so far." },
+    "group":       { "type": "string", "description": "Celery group ID if the task is part of a group." },
+    "duration":    { "type": "number", "description": "Task execution duration in milliseconds." },
+    "args":        { "type": "array", "description": "Positional task arguments. Only present when include_args is enabled in insights_config.", "items": {} },
+    "kwargs":      { "type": "object", "description": "Keyword task arguments (filtered). Only present when include_args is enabled in insights_config.", "additionalProperties": true },
+    "request_id":  { "type": "string", "description": "Request ID propagated from the originating request via Celery task headers." }
+  },
+  "required": ["event_type", "task_id", "task_name", "state"]
+}

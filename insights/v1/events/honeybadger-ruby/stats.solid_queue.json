@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/stats.solid_queue.json",
+  "title": "SolidQueue: stats",
+  "description": "Periodic SolidQueue cluster statistics snapshot emitted by the Honeybadger plugin.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "stats.solid_queue"
+    },
+    "jobs_in_progress": {
+      "type": "integer",
+      "description": "Jobs currently being executed."
+    },
+    "jobs_blocked": {
+      "type": "integer",
+      "description": "Jobs blocked waiting on a concurrency limit."
+    },
+    "jobs_failed": {
+      "type": "integer",
+      "description": "Jobs in the failed state."
+    },
+    "jobs_scheduled": {
+      "type": "integer",
+      "description": "Jobs scheduled for future execution."
+    },
+    "jobs_processed": {
+      "type": "integer",
+      "description": "Total jobs processed (lifetime counter)."
+    },
+    "active_workers": {
+      "type": "integer",
+      "description": "Number of active worker processes."
+    },
+    "active_dispatchers": {
+      "type": "integer",
+      "description": "Number of active dispatcher processes."
+    },
+    "queues": {
+      "type": "object",
+      "description": "Per-queue depth keyed by queue name.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "depth": {
+            "type": "integer",
+            "description": "Number of jobs in the queue."
+          }
+        }
+      }
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

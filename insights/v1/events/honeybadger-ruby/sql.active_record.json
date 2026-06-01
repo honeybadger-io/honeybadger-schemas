@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/sql.active_record.json",
+  "title": "Rails ActiveRecord",
+  "description": "A single SQL query executed via Rails' ActiveRecord, emitted by the Honeybadger Insights instrumentation. One event per query \u2014 there is no aggregated per-request rollup at this level; join with the matching process_action.action_controller event via request_id::str for request-scoped totals.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "sql.active_record",
+      "description": "Insights event type discriminator."
+    },
+    "query": {
+      "type": "string",
+      "description": "The SQL text with bind parameters substituted with ?. Group by query::str to bucket repeats; the same query text recurs across requests."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Wall-clock time the query took, in milliseconds. Type-hint as ::float (or ::int if you only need integer ms)."
+    },
+    "cached": {
+      "type": "boolean",
+      "description": "Whether the query result was served from the ActiveRecord query cache."
+    },
+    "async": {
+      "type": "boolean",
+      "description": "Whether the query was executed asynchronously."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, merged globally by the agent for all events fired during a request. Ties this query to the parent process_action.action_controller and sibling render_*.action_view events from the same request."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber."
+    }
+  },
+  "required": [
+    "event_type",
+    "query",
+    "duration"
+  ]
+}

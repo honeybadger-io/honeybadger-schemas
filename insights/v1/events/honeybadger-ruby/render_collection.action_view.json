@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/render_collection.action_view.json",
+  "title": "Rails views",
+  "description": "A single ActionView rendering event. This schema covers three event_types that share the same field shape: render_template.action_view (top-level template), render_partial.action_view (render partial: call), and render_collection.action_view (render collection: call). Each event corresponds to one render call; a single request typically emits one render_template and several render_partials.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "render_collection.action_view",
+      "description": "Insights event type discriminator."
+    },
+    "view": {
+      "type": "string",
+      "description": "Path of the template file, e.g. \"[PROJECT_ROOT]/app/views/users/show.html.erb\". Group by view::str to bucket per-template."
+    },
+    "layout": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Layout the template was rendered into, e.g. \"application\". Null when the render skipped layouts."
+    },
+    "duration": {
+      "type": "number",
+      "description": "Render duration in milliseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on all events fired during a request. Ties this event to sibling process_action.action_controller and sql.active_record events from the same request."
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber."
+    }
+  },
+  "required": [
+    "event_type",
+    "view",
+    "duration"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger/deploy.json",
+  "title": "Deploys",
+  "description": "A code deploy reported to Honeybadger. One event per deploy per environment — there is no started/finished pair.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "deploy",
+      "description": "Insights event type discriminator."
+    },
+    "environment": {
+      "type": "string",
+      "description": "Target environment of the deploy, e.g. \"production\", \"staging\"."
+    },
+    "revision": {
+      "type": "string",
+      "description": "Source revision (commit SHA) being deployed."
+    },
+    "repository": {
+      "type": "string",
+      "description": "Repository URL, when reported."
+    },
+    "local_username": {
+      "type": "string",
+      "description": "Username on the deploying machine."
+    },
+    "commits": {
+      "type": "array",
+      "description": "Commits included in this deploy when reported. Omitted on deploys without a commit list.",
+      "items": { "type": "object", "additionalProperties": true }
+    }
+  },
+  "required": ["event_type"]
+}

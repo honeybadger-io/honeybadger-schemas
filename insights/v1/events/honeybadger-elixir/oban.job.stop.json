@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/oban.job.stop.json",
+  "title": "Oban: job stop",
+  "description": "An Oban job completed successfully. One event per job execution.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "oban.job.stop"
+    },
+    "id": {
+      "type": "integer",
+      "description": "Oban job database ID."
+    },
+    "worker": {
+      "type": "string",
+      "description": "Worker module name."
+    },
+    "queue": {
+      "type": "string",
+      "description": "Queue the job ran on."
+    },
+    "state": {
+      "type": "string",
+      "description": "Final job state, e.g. \"success\", \"cancelled\", \"discard\"."
+    },
+    "attempt": {
+      "type": "integer",
+      "description": "Attempt number (1-based)."
+    },
+    "prefix": {
+      "type": "string",
+      "description": "Oban database prefix (schema)."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags assigned to the job."
+    },
+    "args": {
+      "type": "object",
+      "description": "Job arguments map.",
+      "additionalProperties": true
+    },
+    "duration": {
+      "type": "number",
+      "description": "Job execution duration in microseconds."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID propagated from the originating request via Oban job metadata, or a newly generated ID for background jobs."
+    }
+  },
+  "required": [
+    "event_type",
+    "worker",
+    "queue"
+  ]
+}
