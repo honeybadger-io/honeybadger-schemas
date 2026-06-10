@@ -21,7 +21,29 @@
     },
     "payload": {
       "type": "object",
-      "description": "Optional user-supplied body, only present on advanced check-ins. Shape is caller-defined; reference subkeys as payload.<name>::<type> and prefer @preview to inspect a sample before guessing field names.",
+      "description": "Optional user-supplied body, only present on advanced check-ins. The fields below are the ones Honeybadger surfaces in the UI; any other keys are caller-defined — reference subkeys as payload.<name>::<type> and prefer @preview to inspect a sample before guessing field names.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Job outcome label. \"success\" is rendered as a check icon in the UI; anything else is treated as a failure label."
+        },
+        "duration": {
+          "type": "number",
+          "description": "How long the job took, in milliseconds."
+        },
+        "exit_code": {
+          "type": "integer",
+          "description": "Process exit code reported by the job. 0 conventionally means success."
+        },
+        "stdout": {
+          "type": "string",
+          "description": "Captured stdout from the job run."
+        },
+        "stderr": {
+          "type": "string",
+          "description": "Captured stderr from the job run."
+        }
+      },
       "additionalProperties": true
     }
   },
