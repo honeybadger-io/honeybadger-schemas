@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "volume_spike.json#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "id": "event",
+      "type": "string"
+    },
+    "message": {
+      "id": "message",
+      "type": "string"
+    },
+    "project": {"$ref": "../project.json#"},
+    "volume_spike": {
+      "id": "volume_spike",
+      "type": "object",
+      "properties": {
+        "observed": {
+          "id": "observed",
+          "type": "integer"
+        },
+        "baseline_median": {
+          "id": "baseline_median",
+          "type": "number"
+        },
+        "factor": {
+          "id": "factor",
+          "type": "number"
+        },
+        "z_score": {
+          "id": "z_score",
+          "type": "number"
+        },
+        "window_minutes": {
+          "id": "window_minutes",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "observed",
+        "baseline_median",
+        "factor",
+        "z_score",
+        "window_minutes"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "event",
+    "message",
+    "project",
+    "volume_spike"
+  ]
+}
