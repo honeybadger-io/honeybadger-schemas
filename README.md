@@ -11,6 +11,26 @@ JSON schemas for public Honeybadger API resources.
   - [docs](https://docs.honeybadger.io/api/exceptions.html)
   - [schemas](./exceptions/)
 
+## Using these schemas in a project
+
+This repo is the source of truth. How you pull the schemas into a consumer
+project is up to the consumer — pick whatever fits the stack. A few patterns
+that work:
+
+- **Git submodule or subtree.** Add this repo under `vendor/schemas` (or
+  similar) and update it when you want a newer revision. Pins to a SHA for
+  free.
+- **A short fetch script in the consumer.** A Makefile target, rake task, or
+  shell script that clones this repo at a pinned ref and copies the subset
+  of files the project needs. Record the SHA somewhere if you want to track
+  drift in CI.
+- **Remote fetch at build time.** Download the files directly from
+  `raw.githubusercontent.com` or from the S3 mirror (see
+  [Deployment](#deployment)) as part of the build.
+
+Whichever you pick, treat vendored copies as read-only — schema changes
+belong here, not downstream.
+
 ## How these are currently used
 
 - Remote download
