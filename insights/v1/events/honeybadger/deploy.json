@@ -2,35 +2,63 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger/deploy.json",
   "title": "Deploys",
-  "description": "A code deploy reported to Honeybadger. One event per deploy per environment — there is no started/finished pair.",
+  "description": "A code deploy reported to Honeybadger. Each deploy creates one event per environment. There is no separate started or finished event.",
+  "x-hb": {
+    "category": "deploys"
+  },
   "type": "object",
   "properties": {
     "event_type": {
       "type": "string",
-      "const": "deploy",
-      "description": "Insights event type discriminator."
+      "const": "deploy"
     },
     "environment": {
       "type": "string",
-      "description": "Target environment of the deploy, e.g. \"production\", \"staging\"."
+      "description": "Target environment of the deploy, e.g. \"production\", \"staging\".",
+      "examples": [
+        "production"
+      ]
     },
     "revision": {
       "type": "string",
-      "description": "Source revision (commit SHA) being deployed."
+      "description": "Source revision (commit SHA) being deployed.",
+      "examples": [
+        "a3f8c12d9b4e6f7a8c01d2e3f4a5b6c7d8e9f0a1"
+      ]
     },
     "repository": {
       "type": "string",
-      "description": "Repository URL, when reported."
+      "description": "Repository URL, when reported.",
+      "examples": [
+        "https://github.com/example/myapp"
+      ]
     },
     "local_username": {
       "type": "string",
-      "description": "Username on the deploying machine."
+      "description": "Username on the deploying machine.",
+      "examples": [
+        "deploy"
+      ]
     },
     "commits": {
       "type": "array",
       "description": "Commits included in this deploy when reported. Omitted on deploys without a commit list.",
-      "items": { "type": "object", "additionalProperties": true }
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "examples": [
+        [
+          {
+            "revision": "a3f8c12d9b4e6f7a8c01d2e3f4a5b6c7d8e9f0a1",
+            "message": "Fix checkout total calculation",
+            "author": "Jane Developer"
+          }
+        ]
+      ]
     }
   },
-  "required": ["event_type"]
+  "required": [
+    "event_type"
+  ]
 }

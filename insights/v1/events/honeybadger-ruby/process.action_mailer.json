@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/process.action_mailer.json",
   "title": "ActionMailer: process",
-  "description": "A Rails ActionMailer message was generated. One event per mail action call.",
+  "description": "Rails generated an Action Mailer message.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "mail",
+    "component": "Action Mailer"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,44 +16,74 @@
     },
     "mailer": {
       "type": "string",
-      "description": "Mailer class name, e.g. \"UserMailer\"."
+      "description": "Mailer class name, e.g. \"UserMailer\".",
+      "examples": [
+        "UserMailer"
+      ]
     },
     "action": {
       "type": "string",
-      "description": "Mailer action method, e.g. \"welcome_email\"."
+      "description": "Mailer action method, e.g. \"welcome_email\".",
+      "examples": [
+        "welcome_email"
+      ]
     },
     "message_id": {
       "type": "string",
-      "description": "Message-ID header of the generated email."
+      "description": "Message-ID header of the generated email.",
+      "examples": [
+        "684af2d1c3b4a_1a2b3c4d5e6f@web-1.example.com.mail"
+      ]
     },
     "subject": {
       "type": "string",
-      "description": "Email subject line."
+      "description": "Email subject line.",
+      "examples": [
+        "Welcome to Example App"
+      ]
     },
     "to": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "Recipient addresses."
+      "description": "Recipient addresses.",
+      "examples": [
+        [
+          "user@example.com"
+        ]
+      ]
     },
     "cc": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "CC addresses."
+      "description": "CC addresses.",
+      "examples": [
+        [
+          "support@example.com"
+        ]
+      ]
     },
     "bcc": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "BCC addresses."
+      "description": "BCC addresses.",
+      "examples": [
+        [
+          "audit@example.com"
+        ]
+      ]
     },
     "date": {
       "type": "string",
-      "description": "Email date header as a string."
+      "description": "Email date header as a string.",
+      "examples": [
+        "Fri, 12 Jun 2026 14:30:00 +0000"
+      ]
     },
     "attachments": {
       "type": "array",
@@ -60,24 +95,59 @@
             "type": "string"
           }
         }
-      }
+      },
+      "examples": [
+        [
+          {
+            "filename": "welcome-guide.pdf"
+          }
+        ]
+      ]
     },
     "params": {
       "type": "object",
       "description": "Params passed to the mailer action.",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "examples": [
+        {
+          "user_id": 123
+        }
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Duration in milliseconds."
+      "description": "Duration in milliseconds.",
+      "examples": [
+        84.21
+      ]
     },
     "instrumenter_id": {
       "type": "string",
-      "description": "Rails instrumenter UUID."
+      "description": "Rails instrumenter UUID.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

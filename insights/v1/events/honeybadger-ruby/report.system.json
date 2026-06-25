@@ -2,7 +2,11 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/report.system.json",
   "title": "System: report",
-  "description": "Periodic system resource snapshot (memory and load average) emitted by the Honeybadger system plugin.",
+  "description": "A periodic memory and load average snapshot from the Honeybadger system plugin.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "system"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -15,23 +19,38 @@
       "properties": {
         "total": {
           "type": "number",
-          "description": "Total system memory."
+          "description": "Total system memory.",
+          "examples": [
+            16384.0
+          ]
         },
         "free": {
           "type": "number",
-          "description": "Free memory."
+          "description": "Free memory.",
+          "examples": [
+            2048.5
+          ]
         },
         "buffers": {
           "type": "number",
-          "description": "Memory used for buffers."
+          "description": "Memory used for buffers.",
+          "examples": [
+            512.25
+          ]
         },
         "cached": {
           "type": "number",
-          "description": "Memory used for cache."
+          "description": "Memory used for cache.",
+          "examples": [
+            6144.75
+          ]
         },
         "free_total": {
           "type": "number",
-          "description": "Total available memory (free + buffers + cached)."
+          "description": "Total available memory (free + buffers + cached).",
+          "examples": [
+            8705.5
+          ]
         }
       }
     },
@@ -41,21 +60,47 @@
       "properties": {
         "one": {
           "type": "number",
-          "description": "1-minute load average."
+          "description": "1-minute load average.",
+          "examples": [
+            0.42
+          ]
         },
         "five": {
           "type": "number",
-          "description": "5-minute load average."
+          "description": "5-minute load average.",
+          "examples": [
+            0.38
+          ]
         },
         "fifteen": {
           "type": "number",
-          "description": "15-minute load average."
+          "description": "15-minute load average.",
+          "examples": [
+            0.35
+          ]
         }
       }
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

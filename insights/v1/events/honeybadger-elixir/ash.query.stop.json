@@ -2,7 +2,26 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-elixir/ash.query.stop.json",
   "title": "Ash: query stop",
-  "description": "An Ash Framework query span completed. Emitted by Honeybadger.Insights.Ash when the span type is included in trace_types config. Default trace_types: [:custom, :action].",
+  "description": "An Ash query span finished. Honeybadger records this when :query is included in trace_types.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "database",
+    "component": "Ash"
+  },
+  "examples": [
+    {
+      "event_type": "ash.query.stop",
+      "span_id": "c2e4a6f8b0d1395c7e9a1b3d5f70c284",
+      "name": "accounts:user.read",
+      "parent_span_id": "a7c3e9f1b5d2480c9e6a1f3b7d5c2e80",
+      "duration": 4200,
+      "metadata": {
+        "resource_short_name": "user",
+        "action": "read"
+      },
+      "request_id": "F8ZBOg1zcBQDqDgAAADx"
+    }
+  ],
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,42 +30,69 @@
     },
     "span_id": {
       "type": "string",
-      "description": "Unique ID for this span, for correlating nested spans."
+      "description": "Unique ID for this span, for correlating nested spans.",
+      "examples": [
+        "c2e4a6f8b0d1395c7e9a1b3d5f70c284"
+      ]
     },
     "name": {
       "type": "string",
-      "description": "Span name, typically the action or operation name."
+      "description": "Span name, typically the action or operation name.",
+      "examples": [
+        "accounts:user.read"
+      ]
     },
     "parent_span_id": {
       "type": "string",
-      "description": "ID of the parent span, enabling operation tree reconstruction."
+      "description": "ID of the parent span, enabling operation tree reconstruction.",
+      "examples": [
+        "a7c3e9f1b5d2480c9e6a1f3b7d5c2e80"
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Span duration in microseconds."
+      "description": "Span duration in microseconds.",
+      "examples": [
+        4200
+      ]
     },
     "metadata": {
       "type": "object",
       "description": "Additional metadata set via set_metadata/2.",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "examples": [
+        {
+          "resource_short_name": "user",
+          "action": "read"
+        }
+      ]
     },
     "error": {
       "type": "object",
-      "description": "Present if the span captured an error via set_error/2.",
+      "description": "Present when the span records an error with set_error/2.",
       "properties": {
         "class": {
           "type": "string",
-          "description": "Exception module name."
+          "description": "Exception module name.",
+          "examples": [
+            "Ash.Error.Query.NotFound"
+          ]
         },
         "message": {
           "type": "string",
-          "description": "Exception message."
+          "description": "Exception message.",
+          "examples": [
+            "record not found"
+          ]
         }
       }
     },
     "request_id": {
       "type": "string",
-      "description": "Request ID from the current EventContext."
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
     }
   },
   "required": [

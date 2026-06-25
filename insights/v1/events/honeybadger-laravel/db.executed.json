@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-laravel/db.executed.json",
   "title": "Laravel: db.executed",
-  "description": "A database query executed via Laravel's Eloquent/Query Builder. SQL is sanitized \u2014 literals replaced with ?.",
+  "description": "A Laravel database query. SQL literals are replaced with ?.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "database",
+    "component": "Database"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,23 +16,31 @@
     },
     "connectionName": {
       "type": "string",
-      "description": "Database connection name, e.g. \"mysql\", \"pgsql\"."
+      "description": "Database connection name, e.g. \"mysql\", \"pgsql\".",
+      "examples": [
+        "mysql"
+      ]
     },
     "sql": {
       "type": "string",
-      "description": "Sanitized SQL with literals replaced by ?."
+      "description": "Sanitized SQL with literals replaced by ?.",
+      "examples": [
+        "select * from `users` where `id` = ? limit ?"
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Duration in microseconds. The client emits a string with ms suffix (e.g. \"5.123ms\"); the ingestion pipeline converts it to microseconds."
+      "description": "Duration in microseconds. The client sends a value with an ms suffix, such as \"5.123ms\". The ingestion pipeline converts it to microseconds.",
+      "examples": [
+        2340
+      ]
     },
     "requestId": {
       "type": "string",
-      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
-    },
-    "request_id": {
-      "type": "string",
-      "description": "Alias \u2014 same value as requestId, present if set via event context."
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
     }
   },
   "required": [

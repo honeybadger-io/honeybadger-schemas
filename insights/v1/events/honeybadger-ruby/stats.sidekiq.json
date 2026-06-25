@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/stats.sidekiq.json",
   "title": "Sidekiq: stats",
-  "description": "Periodic Sidekiq cluster statistics snapshot emitted by the Honeybadger plugin.",
+  "description": "Sidekiq cluster statistics from the Honeybadger agent.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "metrics",
+    "component": "Sidekiq"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,39 +16,66 @@
     },
     "processed": {
       "type": "integer",
-      "description": "Total jobs processed (lifetime counter)."
+      "description": "Total jobs processed (lifetime counter).",
+      "examples": [
+        1284512
+      ]
     },
     "failed": {
       "type": "integer",
-      "description": "Total jobs failed (lifetime counter)."
+      "description": "Total jobs failed (lifetime counter).",
+      "examples": [
+        1432
+      ]
     },
     "scheduled_size": {
       "type": "integer",
-      "description": "Jobs in the scheduled set."
+      "description": "Jobs in the scheduled set.",
+      "examples": [
+        87
+      ]
     },
     "retry_size": {
       "type": "integer",
-      "description": "Jobs in the retry set."
+      "description": "Jobs in the retry set.",
+      "examples": [
+        12
+      ]
     },
     "dead_size": {
       "type": "integer",
-      "description": "Jobs in the dead set."
+      "description": "Jobs in the dead set.",
+      "examples": [
+        3
+      ]
     },
     "processes_size": {
       "type": "integer",
-      "description": "Number of running Sidekiq processes."
+      "description": "Number of running Sidekiq processes.",
+      "examples": [
+        2
+      ]
     },
     "default_queue_latency": {
       "type": "number",
-      "description": "Latency of the default queue in seconds (Sidekiq::Stats value, not converted)."
+      "description": "Latency of the default queue in seconds as returned by Sidekiq::Stats.",
+      "examples": [
+        0.42
+      ]
     },
     "capacity": {
       "type": "integer",
-      "description": "Total worker thread capacity across all processes."
+      "description": "Total worker thread capacity across all processes.",
+      "examples": [
+        20
+      ]
     },
     "utilization": {
       "type": "number",
-      "description": "Worker utilization ratio (0.0\u20131.0)."
+      "description": "Worker utilization ratio (0.0–1.0).",
+      "examples": [
+        0.35
+      ]
     },
     "queues": {
       "type": "object",
@@ -64,11 +96,42 @@
             "description": "Jobs currently being processed from this queue."
           }
         }
-      }
+      },
+      "examples": [
+        {
+          "default": {
+            "latency": 420,
+            "depth": 6,
+            "busy": 5
+          },
+          "mailers": {
+            "latency": 0,
+            "depth": 0,
+            "busy": 2
+          }
+        }
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID from the active web request context, if any. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "worker-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

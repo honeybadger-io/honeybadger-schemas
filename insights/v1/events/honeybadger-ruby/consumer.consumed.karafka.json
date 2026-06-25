@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/consumer.consumed.karafka.json",
   "title": "Karafka: consumer.consumed",
-  "description": "A batch of Kafka messages was successfully consumed by a Karafka consumer.",
+  "description": "A Karafka consumer processed a batch of Kafka messages.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "jobs",
+    "component": "Karafka"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,39 +16,80 @@
     },
     "topic": {
       "type": "string",
-      "description": "Kafka topic consumed from."
+      "description": "Kafka topic consumed from.",
+      "examples": [
+        "orders"
+      ]
     },
     "partition": {
       "type": "integer",
-      "description": "Kafka partition consumed from."
+      "description": "Kafka partition consumed from.",
+      "examples": [
+        0
+      ]
     },
     "consumer_group": {
       "type": "string",
-      "description": "Consumer group identifier."
+      "description": "Consumer group identifier.",
+      "examples": [
+        "orders_consumers"
+      ]
     },
     "consumer": {
       "type": "string",
-      "description": "Consumer class name."
+      "description": "Consumer class name.",
+      "examples": [
+        "OrdersConsumer"
+      ]
     },
     "processed": {
       "type": "integer",
-      "description": "Number of messages processed in this batch."
+      "description": "Number of messages processed in this batch.",
+      "examples": [
+        25
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Processing duration in milliseconds."
+      "description": "Processing duration in milliseconds.",
+      "examples": [
+        845.3
+      ]
     },
     "processing_lag": {
       "type": "integer",
-      "description": "Lag between message production and processing start, in milliseconds."
+      "description": "Latency between when the first message in the batch was produced and when processing began, in milliseconds.",
+      "examples": [
+        213
+      ]
     },
     "consumption_lag": {
       "type": "integer",
-      "description": "Lag between last committed offset and newest available offset, in milliseconds."
+      "description": "Latency between the last committed offset and the newest available offset, in milliseconds.",
+      "examples": [
+        1378
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID from the active web request context, if any. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "3d9c2f81-6e5a-4f7b-9c0d-8a1b2c3d4e5f"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "worker-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

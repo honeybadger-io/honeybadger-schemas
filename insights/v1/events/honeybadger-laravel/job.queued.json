@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-laravel/job.queued.json",
   "title": "Laravel: job.queued",
-  "description": "A job was pushed onto a queue. Emitted by JobQueued. Requires Laravel 8.24+.",
+  "description": "A Laravel job was pushed onto a queue. Requires Laravel 8.24+.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "jobs",
+    "component": "Queue"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,37 +16,51 @@
     },
     "connectionName": {
       "type": "string",
-      "description": "Queue connection name."
+      "description": "Queue connection name.",
+      "examples": [
+        "redis"
+      ]
     },
     "job": {
       "type": "string",
-      "description": "Job class name."
+      "description": "Job class name.",
+      "examples": [
+        "App\\Jobs\\SendWelcomeEmail"
+      ]
     },
     "id": {
       "type": "string",
-      "description": "Job ID."
+      "description": "Job ID.",
+      "examples": [
+        "9c2e1f7a-3b4d-4e5f-8a6b-1c2d3e4f5a6b"
+      ]
     },
     "queue": {
       "type": [
         "string",
         "null"
       ],
-      "description": "Queue name, if available."
+      "description": "Queue name, if available.",
+      "examples": [
+        "default"
+      ]
     },
     "delay": {
       "type": [
         "integer",
         "null"
       ],
-      "description": "Delay in seconds before the job becomes available."
+      "description": "Delay in seconds before the job becomes available.",
+      "examples": [
+        30
+      ]
     },
     "requestId": {
       "type": "string",
-      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
-    },
-    "request_id": {
-      "type": "string",
-      "description": "Alias \u2014 same value as requestId, present if set via event context."
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
     }
   },
   "required": [

@@ -3,6 +3,11 @@
   "$id": "insights/v1/events/honeybadger-laravel/mail.sending.json",
   "title": "Laravel: mail.sending",
   "description": "A mail message is about to be sent.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "mail",
+    "component": "Mail"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -10,48 +15,71 @@
       "const": "mail.sending"
     },
     "to": {
-      "type": "string",
-      "description": "Comma-separated recipient addresses."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Comma-separated recipient addresses. Null when none are set.",
+      "examples": [
+        "user@example.com"
+      ]
     },
     "subject": {
-      "type": "string",
-      "description": "Email subject."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Email subject. Null when not set.",
+      "examples": [
+        "Welcome to Example App"
+      ]
     },
     "cc": {
       "type": [
         "string",
         "null"
       ],
-      "description": "Comma-separated CC addresses."
+      "description": "Comma-separated CC addresses.",
+      "examples": [
+        "manager@example.com"
+      ]
     },
     "bcc": {
       "type": [
         "string",
         "null"
       ],
-      "description": "Comma-separated BCC addresses."
+      "description": "Comma-separated BCC addresses.",
+      "examples": [
+        "audit@example.com"
+      ]
     },
     "replyTo": {
       "type": [
         "string",
         "null"
       ],
-      "description": "Comma-separated reply-to addresses."
+      "description": "Comma-separated reply-to addresses.",
+      "examples": [
+        "support@example.com"
+      ]
     },
     "queue": {
       "type": [
         "string",
         "null"
       ],
-      "description": "Queue name if the mail was queued."
+      "description": "Queue name if the mail was queued.",
+      "examples": [
+        "default"
+      ]
     },
     "requestId": {
       "type": "string",
-      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
-    },
-    "request_id": {
-      "type": "string",
-      "description": "Alias \u2014 same value as requestId, present if set via event context."
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
     }
   },
   "required": [

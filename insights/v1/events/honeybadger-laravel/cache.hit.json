@@ -3,6 +3,11 @@
   "$id": "insights/v1/events/honeybadger-laravel/cache.hit.json",
   "title": "Laravel: cache.hit",
   "description": "A cache key was found (hit).",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "cache",
+    "component": "Cache"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,15 +16,17 @@
     },
     "key": {
       "type": "string",
-      "description": "Cache key that was hit."
+      "description": "Cache key that was hit.",
+      "examples": [
+        "users:123"
+      ]
     },
     "requestId": {
       "type": "string",
-      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
-    },
-    "request_id": {
-      "type": "string",
-      "description": "Alias \u2014 same value as requestId, present if set via event context."
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
     }
   },
   "required": [

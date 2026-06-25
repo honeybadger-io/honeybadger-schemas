@@ -2,76 +2,147 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger/notice.json",
   "title": "Errors",
-  "description": "An occurrence of an unhandled error captured by a Honeybadger client. Multiple notices with the same root cause are grouped under a single fault_id. Use for any query about errors, exceptions, failures, or \"what's broken.\"",
+  "description": "An unhandled error captured by a Honeybadger client. Notices with the same root cause are grouped under one fault_id.",
+  "x-hb": {
+    "category": "errors"
+  },
   "type": "object",
   "properties": {
     "event_type": {
       "type": "string",
-      "const": "notice",
-      "description": "Insights event type discriminator."
+      "const": "notice"
     },
     "uuid": {
       "type": "string",
-      "description": "Stable per-notice token (use to look up a specific notice in the UI)."
+      "description": "Stable per-notice token (use to look up a specific notice in the UI).",
+      "examples": [
+        "3e6c9a1d-7f2b-4e8a-b5c3-9d0e1f2a3b4c"
+      ]
     },
     "ulid": {
       "type": "string",
-      "description": "ULID for the notice — sortable, encodes the receive timestamp."
+      "description": "ULID for the notice. It is sortable and encodes the receive timestamp.",
+      "examples": [
+        "01JXF7Q2M3N4P5R6S7T8V9W0XA"
+      ]
     },
     "fault_id": {
       "type": "integer",
-      "description": "Aggregated error group ID. Group by this to count distinct errors."
+      "description": "Aggregated error group ID. Each fault_id groups notices that share a root cause.",
+      "examples": [
+        84512937
+      ]
     },
     "project_id": {
       "type": "integer",
-      "description": "Project the notice belongs to."
+      "description": "Project the notice belongs to.",
+      "examples": [
+        12345
+      ]
     },
     "klass": {
       "type": "string",
-      "description": "Error class name, e.g. \"NoMethodError\", \"ActiveRecord::RecordNotFound\"."
+      "description": "Error class name, e.g. \"NoMethodError\", \"ActiveRecord::RecordNotFound\".",
+      "examples": [
+        "ActiveRecord::RecordNotFound"
+      ]
     },
     "message": {
       "type": "string",
-      "description": "Error message text from the exception."
+      "description": "Error message text from the exception.",
+      "examples": [
+        "Couldn't find User with 'id'=123"
+      ]
     },
     "file": {
       "type": "string",
-      "description": "Top-frame source file from the backtrace."
+      "description": "Top-frame source file from the backtrace.",
+      "examples": [
+        "app/controllers/users_controller.rb"
+      ]
     },
     "hostname": {
       "type": "string",
-      "description": "Hostname of the server that reported the error."
+      "description": "Hostname of the server that reported the error.",
+      "examples": [
+        "web-1.example.com"
+      ]
     },
     "environment": {
       "type": "string",
-      "description": "Deploy environment, e.g. \"production\", \"staging\"."
+      "description": "Deploy environment, e.g. \"production\", \"staging\".",
+      "examples": [
+        "production"
+      ]
     },
     "revision": {
       "type": "string",
-      "description": "Source revision (commit SHA) the app was running at."
+      "description": "Source revision (commit SHA) the app was running at.",
+      "examples": [
+        "a3f8c12d9b4e6f7a8c01d2e3f4a5b6c7d8e9f0a1"
+      ]
     },
     "user": {
       "type": "string",
-      "description": "Resolved from the project's user-search field (typically email or user_id). Use unique(user::str) to count affected users."
+      "description": "Resolved from the project's user-search field (typically email or user_id).",
+      "examples": [
+        "user@example.com"
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Per-request correlation id."
+      "description": "Per-request correlation id.",
+      "examples": [
+        "1f9f6f1a-2b3c-4d5e-8f6a-7b8c9d0e1f2a"
+      ]
     },
     "tags": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Tags applied to the notice."
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags applied to the notice.",
+      "examples": [
+        [
+          "billing",
+          "critical"
+        ]
+      ]
     },
     "request": {
       "type": "object",
       "description": "HTTP request metadata from the error context.",
       "properties": {
-        "url":            { "type": "string" },
-        "referer":        { "type": "string" },
-        "host":           { "type": "string" },
-        "request_method": { "type": "string" },
-        "remote_addr":    { "type": "string" }
+        "url": {
+          "type": "string",
+          "examples": [
+            "https://www.example.com/users/123"
+          ]
+        },
+        "referer": {
+          "type": "string",
+          "examples": [
+            "https://www.example.com/users"
+          ]
+        },
+        "host": {
+          "type": "string",
+          "examples": [
+            "www.example.com"
+          ]
+        },
+        "request_method": {
+          "type": "string",
+          "examples": [
+            "GET"
+          ]
+        },
+        "remote_addr": {
+          "type": "string",
+          "examples": [
+            "203.0.113.42"
+          ]
+        }
       }
     },
     "user_agent": {
@@ -81,42 +152,103 @@
         "browser": {
           "type": "object",
           "properties": {
-            "name":    { "type": "string" },
-            "major":   { "type": "string" },
-            "version": { "type": "string" }
+            "name": {
+              "type": "string",
+              "examples": [
+                "Chrome"
+              ]
+            },
+            "major": {
+              "type": "string",
+              "examples": [
+                "126"
+              ]
+            },
+            "version": {
+              "type": "string",
+              "examples": [
+                "126.0.0.0"
+              ]
+            }
           }
         },
         "os": {
           "type": "object",
           "properties": {
-            "name":    { "type": "string" },
-            "version": { "type": "string" }
+            "name": {
+              "type": "string",
+              "examples": [
+                "Mac OS X"
+              ]
+            },
+            "version": {
+              "type": "string",
+              "examples": [
+                "10.15.7"
+              ]
+            }
           }
         },
         "device": {
           "type": "object",
           "properties": {
-            "model": { "type": "string" }
+            "model": {
+              "type": "string",
+              "examples": [
+                "Mac"
+              ]
+            }
           }
         },
-        "bot": { "type": "boolean" }
+        "bot": {
+          "type": "boolean",
+          "examples": [
+            false
+          ]
+        }
       }
     },
     "context": {
       "type": "object",
-      "description": "Caller-supplied context hash. Common subkeys: context.user_email, context.user_id, context.username. Reference as context.<name>::str (or appropriate type).",
-      "additionalProperties": true
+      "description": "Context data your application set when the error was reported, such as values from Honeybadger.context. Keys are whatever your code sends. Common examples include context.user_email, context.user_id, and context.username.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "user_id": 123,
+          "user_email": "user@example.com",
+          "plan": "pro"
+        }
+      ]
     },
     "session": {
       "type": "object",
-      "description": "Caller-supplied session hash. Reference subkeys as session.<name>::type.",
-      "additionalProperties": true
+      "description": "The HTTP session at the time of the error. Keys are whatever your application stores in the session.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "session_id": "9d0e1f2a3b4c5d6e",
+          "cart_items": 2
+        }
+      ]
     },
     "params": {
       "type": "object",
-      "description": "HTTP params from the request. Reference subkeys as params.<name>::type.",
-      "additionalProperties": true
+      "description": "The HTTP request parameters at the time of the error. Keys depend on the request.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "controller": "users",
+          "action": "show",
+          "id": "123"
+        }
+      ]
     }
   },
-  "required": ["event_type", "fault_id", "project_id", "klass", "message"]
+  "required": [
+    "event_type",
+    "fault_id",
+    "project_id",
+    "klass",
+    "message"
+  ]
 }

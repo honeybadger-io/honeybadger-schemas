@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/cache_delete_multi.active_support.json",
   "title": "Cache: cache_delete_multi?",
-  "description": "Rails ActiveSupport multi-key cache delete.",
+  "description": "A Rails multi-key cache delete.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "cache",
+    "component": "Active Support"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -14,22 +19,54 @@
       "items": {
         "type": "string"
       },
-      "description": "Cache keys deleted."
+      "description": "Cache keys deleted.",
+      "examples": [
+        [
+          "views/users/123",
+          "views/users/124"
+        ]
+      ]
     },
     "store": {
       "type": "string",
-      "description": "Cache store class name."
+      "description": "Cache store class name.",
+      "examples": [
+        "ActiveSupport::Cache::RedisCacheStore"
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Duration in milliseconds."
+      "description": "Duration in milliseconds.",
+      "examples": [
+        0.74
+      ]
     },
     "instrumenter_id": {
-      "type": "string"
+      "type": "string",
+      "examples": [
+        "d9f4a7b2c1e8d3f6a0b5"
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

@@ -2,21 +2,96 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/heroku/router.json",
   "title": "Heroku Router",
-  "description": "An HTTP request log line emitted by the Heroku router and ingested via a Heroku log drain. Detected by proc_id == 'router'. Fields are parsed from the Heroku router log format.",
+  "description": "A Heroku router log line from a Heroku log drain. Honeybadger recognizes it by proc_id == 'router'.",
+  "x-hb": {
+    "category": "request",
+    "component": "Heroku Router"
+  },
   "type": "object",
   "properties": {
-    "event_type": { "type": "string", "description": "Event type derived from the log source." },
-    "proc_id":    { "type": "string", "const": "router", "description": "Heroku process identifier — always 'router' for this event." },
-    "method":     { "type": "string", "description": "HTTP method, e.g. \"GET\", \"POST\"." },
-    "path":       { "type": "string", "description": "Request path." },
-    "host":       { "type": "string", "description": "Request host header." },
-    "fwd":        { "type": "string", "description": "Forwarded client IP address." },
-    "dyno":       { "type": "string", "description": "Dyno that handled the request, e.g. \"web.1\"." },
-    "connect":    { "type": "number", "description": "Time in milliseconds to establish the connection." },
-    "service":    { "type": "number", "description": "Time in milliseconds the dyno spent processing the request." },
-    "status":     { "type": "integer", "description": "HTTP response status code." },
-    "bytes":      { "type": "integer", "description": "Number of bytes returned in the response." },
-    "protocol":   { "type": "string", "description": "Protocol used, e.g. \"https\"." }
+    "event_type": {
+      "type": "string",
+      "examples": [
+        "logplex"
+      ]
+    },
+    "proc_id": {
+      "type": "string",
+      "const": "router",
+      "description": "Heroku process identifier. Always 'router' for this event."
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\".",
+      "examples": [
+        "GET"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "description": "Request path.",
+      "examples": [
+        "/users/123"
+      ]
+    },
+    "host": {
+      "type": "string",
+      "description": "Request host header.",
+      "examples": [
+        "www.example.com"
+      ]
+    },
+    "fwd": {
+      "type": "string",
+      "description": "Forwarded client IP address.",
+      "examples": [
+        "203.0.113.42"
+      ]
+    },
+    "dyno": {
+      "type": "string",
+      "description": "Dyno that handled the request, e.g. \"web.1\".",
+      "examples": [
+        "web.1"
+      ]
+    },
+    "connect": {
+      "type": "number",
+      "description": "Time in milliseconds to establish the connection.",
+      "examples": [
+        1
+      ]
+    },
+    "service": {
+      "type": "number",
+      "description": "Time in milliseconds the dyno spent processing the request.",
+      "examples": [
+        45
+      ]
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code.",
+      "examples": [
+        200
+      ]
+    },
+    "bytes": {
+      "type": "integer",
+      "description": "Number of bytes returned in the response.",
+      "examples": [
+        15342
+      ]
+    },
+    "protocol": {
+      "type": "string",
+      "description": "Protocol used, e.g. \"https\".",
+      "examples": [
+        "https"
+      ]
+    }
   },
-  "required": ["proc_id"]
+  "required": [
+    "proc_id"
+  ]
 }

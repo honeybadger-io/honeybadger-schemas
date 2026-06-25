@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/enqueue_all.active_job.json",
   "title": "ActiveJob: enqueue_all",
-  "description": "A batch of ActiveJob jobs enqueued together.",
+  "description": "A batch of Active Job jobs was enqueued.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "jobs",
+    "component": "Active Job"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,7 +16,10 @@
     },
     "adapter_class": {
       "type": "string",
-      "description": "ActiveJob adapter class."
+      "description": "ActiveJob adapter class.",
+      "examples": [
+        "ActiveJob::QueueAdapters::SidekiqAdapter"
+      ]
     },
     "jobs": {
       "type": "array",
@@ -29,19 +37,56 @@
             "type": "string"
           }
         }
-      }
+      },
+      "examples": [
+        [
+          {
+            "job_class": "WelcomeEmailJob",
+            "job_id": "c6e1f6b2-8d4a-4f0e-9b7c-1a2d3e4f5a6b",
+            "queue_name": "default"
+          },
+          {
+            "job_class": "SyncCrmContactJob",
+            "job_id": "8a2b4c6d-0e1f-4a3b-8c5d-7e9f1a2b3c4d",
+            "queue_name": "default"
+          }
+        ]
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Duration in milliseconds."
+      "description": "Duration in milliseconds.",
+      "examples": [
+        3.86
+      ]
     },
     "instrumenter_id": {
       "type": "string",
-      "description": "Rails instrumenter UUID."
+      "description": "Rails ActiveSupport::Notifications instrumenter UUID.",
+      "examples": [
+        "d9f4a7b2c1e8d3f6a0b5"
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID from the active web request context, if any. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

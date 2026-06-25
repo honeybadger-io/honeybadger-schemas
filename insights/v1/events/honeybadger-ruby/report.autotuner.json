@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/report.autotuner.json",
   "title": "Autotuner: report",
-  "description": "A tuning recommendation report from the Autotuner gem, forwarded by the Honeybadger plugin.",
+  "description": "A tuning recommendation from the Autotuner gem.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "metrics",
+    "component": "Autotuner"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,11 +16,31 @@
     },
     "report": {
       "type": "string",
-      "description": "Human-readable tuning recommendation text."
+      "description": "Human-readable tuning recommendation text.",
+      "examples": [
+        "The following suggestions reduce the number of major GC collections during requests.\nSuggested tuning values:\n  RUBY_GC_HEAP_OLDOBJECT_LIMIT_FACTOR=1.2 (default: 2.0)"
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

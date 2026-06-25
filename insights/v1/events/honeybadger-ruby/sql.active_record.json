@@ -2,37 +2,73 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/sql.active_record.json",
   "title": "Rails ActiveRecord",
-  "description": "A single SQL query executed via Rails' ActiveRecord, emitted by the Honeybadger Insights instrumentation. One event per query \u2014 there is no aggregated per-request rollup at this level; join with the matching process_action.action_controller event via request_id::str for request-scoped totals.",
+  "description": "A SQL query from Rails Active Record. Use request_id to group queries from the same HTTP request.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "database",
+    "component": "Active Record"
+  },
   "type": "object",
   "properties": {
     "event_type": {
       "type": "string",
-      "const": "sql.active_record",
-      "description": "Insights event type discriminator."
+      "const": "sql.active_record"
     },
     "query": {
       "type": "string",
-      "description": "The SQL text with bind parameters substituted with ?. Group by query::str to bucket repeats; the same query text recurs across requests."
+      "description": "The SQL text with bind parameters obfuscated.",
+      "examples": [
+        "SELECT \"users\".* FROM \"users\" WHERE \"users\".\"id\" = ? LIMIT ?"
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Wall-clock time the query took, in milliseconds. Type-hint as ::float (or ::int if you only need integer ms)."
+      "description": "Wall-clock time the query took, in milliseconds.",
+      "examples": [
+        2.34
+      ]
     },
     "cached": {
       "type": "boolean",
-      "description": "Whether the query result was served from the ActiveRecord query cache."
+      "description": "Whether the query result was served from the ActiveRecord query cache.",
+      "examples": [
+        false
+      ]
     },
     "async": {
       "type": "boolean",
-      "description": "Whether the query was executed asynchronously."
+      "description": "Whether the query was executed asynchronously.",
+      "examples": [
+        false
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, merged globally by the agent for all events fired during a request. Ties this query to the parent process_action.action_controller and sibling render_*.action_view events from the same request."
+      "description": "Rails request UUID. Shared by all events from the same HTTP request.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
     },
     "instrumenter_id": {
       "type": "string",
-      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber."
+      "description": "Unique identifier for the ActiveSupport::Notifications instrumentation request, assigned by Rails.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

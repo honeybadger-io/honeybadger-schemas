@@ -2,17 +2,83 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/stats.puma.json",
   "title": "Puma: stats",
-  "description": "Periodic Puma web server statistics snapshot emitted by the Honeybadger Puma plugin. In cluster mode one event is emitted per worker; in single mode one event per cycle. Fields come directly from Puma.stats.",
+  "description": "A periodic Puma stats snapshot. Cluster mode records one event per worker. Single mode records one event per cycle. Fields come directly from Puma.stats.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "metrics",
+    "component": "Puma"
+  },
   "type": "object",
   "properties": {
-    "event_type":      { "type": "string", "const": "stats.puma" },
-    "worker":          { "type": "integer", "description": "Worker index in cluster mode. Absent in single mode." },
-    "pool_capacity":   { "type": "integer", "description": "Number of threads available to pick up new requests." },
-    "max_threads":     { "type": "integer", "description": "Maximum number of threads configured for this worker." },
-    "requests_count":  { "type": "integer", "description": "Total requests processed by this worker since start." },
-    "backlog":         { "type": "integer", "description": "Number of connections waiting for a thread." },
-    "running":         { "type": "integer", "description": "Number of threads currently running." },
-    "request_id":      { "type": "string", "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent." }
+    "event_type": {
+      "type": "string",
+      "const": "stats.puma"
+    },
+    "worker": {
+      "type": "integer",
+      "description": "Worker index in cluster mode. Absent in single mode.",
+      "examples": [
+        0
+      ]
+    },
+    "pool_capacity": {
+      "type": "integer",
+      "description": "Number of threads available to pick up new requests.",
+      "examples": [
+        3
+      ]
+    },
+    "max_threads": {
+      "type": "integer",
+      "description": "Maximum number of threads configured for this worker.",
+      "examples": [
+        5
+      ]
+    },
+    "requests_count": {
+      "type": "integer",
+      "description": "Total requests processed by this worker since start.",
+      "examples": [
+        18342
+      ]
+    },
+    "backlog": {
+      "type": "integer",
+      "description": "Number of connections waiting for a thread.",
+      "examples": [
+        0
+      ]
+    },
+    "running": {
+      "type": "integer",
+      "description": "Number of threads currently running.",
+      "examples": [
+        5
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
   },
-  "required": ["event_type"]
+  "required": [
+    "event_type"
+  ]
 }

@@ -3,6 +3,11 @@
   "$id": "insights/v1/events/honeybadger-ruby/halted_callback.action_controller.json",
   "title": "ActionController: halted_callback",
   "description": "A before/around filter halted the Rails request processing chain.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "request",
+    "component": "Action Controller"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,19 +16,45 @@
     },
     "filter": {
       "type": "string",
-      "description": "Name of the filter/callback that halted the chain."
+      "description": "Name of the filter/callback that halted the chain.",
+      "examples": [
+        "require_login"
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Duration in milliseconds."
+      "description": "Duration in milliseconds.",
+      "examples": [
+        2.15
+      ]
     },
     "instrumenter_id": {
       "type": "string",
-      "description": "Rails instrumenter UUID."
+      "description": "Rails instrumenter UUID.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent."
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

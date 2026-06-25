@@ -2,50 +2,81 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger/check_in.json",
   "title": "Check-ins",
-  "description": "A heartbeat or report from a scheduled job or cron monitor. state indicates whether the run succeeded, failed, or reported its status.",
+  "description": "A heartbeat or report from a scheduled job or cron monitor. The state field shows whether the run succeeded, failed, or reported its status.",
+  "x-hb": {
+    "category": "check_ins"
+  },
   "type": "object",
   "properties": {
     "event_type": {
       "type": "string",
-      "const": "check_in",
-      "description": "Insights event type discriminator."
+      "const": "check_in"
     },
     "check_in_id": {
       "type": "string",
-      "description": "Stable identifier for the monitored check-in / job."
+      "description": "Stable identifier for the monitored check-in / job.",
+      "examples": [
+        "wNgxJv"
+      ]
     },
     "state": {
       "type": "string",
-      "enum": ["reporting", "missing", "paused"],
-      "description": "Reported state of the run. reporting = the job sent a heartbeat for the scheduled window; missing = the window expired without a heartbeat; paused = the monitor is currently paused."
+      "enum": [
+        "reporting",
+        "missing",
+        "paused"
+      ],
+      "description": "Reported state of the run. reporting means the job sent a heartbeat for the scheduled window. missing means the window expired without a heartbeat. paused means the monitor is paused.",
+      "examples": [
+        "reporting"
+      ]
     },
     "payload": {
       "type": "object",
-      "description": "Optional user-supplied body, only present on advanced check-ins. The fields below are the ones Honeybadger surfaces in the UI; any other keys are caller-defined — reference subkeys as payload.<name>::<type> and prefer @preview to inspect a sample before guessing field names.",
+      "description": "Optional report sent with advanced check-ins. The fields listed below are common, but the job can send other fields too.",
       "properties": {
         "status": {
           "type": "string",
-          "description": "Job outcome label. \"success\" is rendered as a check icon in the UI; anything else is treated as a failure label."
+          "description": "Job outcome label. \"success\" appears as a check icon in the UI. Any other value is treated as a failure label.",
+          "examples": [
+            "success"
+          ]
         },
         "duration": {
           "type": "number",
-          "description": "How long the job took, in milliseconds."
+          "description": "How long the job took, in milliseconds.",
+          "examples": [
+            4523.0
+          ]
         },
         "exit_code": {
           "type": "integer",
-          "description": "Process exit code reported by the job. 0 conventionally means success."
+          "description": "Process exit code reported by the job. 0 conventionally means success.",
+          "examples": [
+            0
+          ]
         },
         "stdout": {
           "type": "string",
-          "description": "Captured stdout from the job run."
+          "description": "Captured stdout from the job run.",
+          "examples": [
+            "Processed 1240 records"
+          ]
         },
         "stderr": {
           "type": "string",
-          "description": "Captured stderr from the job run."
+          "description": "Captured stderr from the job run.",
+          "examples": [
+            ""
+          ]
         }
       },
       "additionalProperties": true
     }
   },
-  "required": ["event_type", "check_in_id", "state"]
+  "required": [
+    "event_type",
+    "check_in_id",
+    "state"
+  ]
 }

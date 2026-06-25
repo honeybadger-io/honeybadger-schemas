@@ -2,57 +2,108 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/process_action.action_controller.json",
   "title": "Rails controllers",
-  "description": "Completion of a Rails controller action \u2014 one event per HTTP request handled by the app. Carries the full request timing breakdown (total duration, plus db_runtime and view_runtime as components), the route/controller/action, and the response status.",
+  "description": "A Rails controller action finished handling an HTTP request. Includes total duration, database time, view time, route details, and response status.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "request",
+    "component": "Action Controller"
+  },
   "type": "object",
   "properties": {
     "event_type": {
       "type": "string",
-      "const": "process_action.action_controller",
-      "description": "Insights event type discriminator."
+      "const": "process_action.action_controller"
     },
     "controller": {
       "type": "string",
-      "description": "Controller class name, e.g. \"SearchController\"."
+      "description": "Controller class name, e.g. \"SearchController\".",
+      "examples": [
+        "UsersController"
+      ]
     },
     "action": {
       "type": "string",
-      "description": "Action method on the controller, e.g. \"index\", \"destroy\"."
+      "description": "Action method on the controller, e.g. \"index\", \"destroy\".",
+      "examples": [
+        "show"
+      ]
     },
     "method": {
       "type": "string",
-      "description": "HTTP method, e.g. \"GET\", \"POST\", \"PUT\"."
+      "description": "HTTP method, e.g. \"GET\", \"POST\", \"PUT\".",
+      "examples": [
+        "GET"
+      ]
     },
     "path": {
       "type": "string",
-      "description": "Request path, e.g. \"/follows\". Often high-cardinality due to ids."
+      "description": "Request path, e.g. \"/follows\". Often high-cardinality due to ids.",
+      "examples": [
+        "/users/123"
+      ]
     },
     "format": {
       "type": "string",
-      "description": "Response format, e.g. \"html\", \"json\"."
+      "description": "Response format, e.g. \"html\", \"json\".",
+      "examples": [
+        "html"
+      ]
     },
     "status": {
       "type": "integer",
-      "description": "HTTP status code returned to the client. Type-hint as ::int. Filter >= 500 for server errors, >= 400 for any error."
+      "description": "HTTP status code returned to the client.",
+      "examples": [
+        200
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Total wall-clock time the action took, in milliseconds. Includes db_runtime and view_runtime."
+      "description": "Total wall-clock time the action took, in milliseconds. Includes db_runtime and view_runtime.",
+      "examples": [
+        145.2
+      ]
     },
     "db_runtime": {
       "type": "number",
-      "description": "Milliseconds spent in DB queries during this action."
+      "description": "Milliseconds spent in DB queries during this action.",
+      "examples": [
+        38.7
+      ]
     },
     "view_runtime": {
       "type": "number",
-      "description": "Milliseconds spent rendering views during this action."
+      "description": "Milliseconds spent rendering views during this action.",
+      "examples": [
+        52.4
+      ]
     },
     "request_id": {
       "type": "string",
-      "description": "Rails request UUID \u2014 also present on sibling sql.active_record, render_*.action_view, and cache_*.active_support events from the same request."
+      "description": "Rails request UUID. Also appears on sql.active_record, render_*.action_view, and cache_*.active_support events from the same request.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
     },
     "instrumenter_id": {
       "type": "string",
-      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber."
+      "description": "Unique identifier for the ActiveSupport::Notifications instrumentation request, assigned by Rails.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
     }
   },
   "required": [

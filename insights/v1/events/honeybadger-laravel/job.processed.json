@@ -2,7 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-laravel/job.processed.json",
   "title": "Laravel: job.processed",
-  "description": "A queue job completed processing. Emitted by JobProcessed.",
+  "description": "A Laravel queue job finished processing.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "jobs",
+    "component": "Queue"
+  },
   "type": "object",
   "properties": {
     "event_type": {
@@ -11,71 +16,106 @@
     },
     "connectionName": {
       "type": "string",
-      "description": "Queue connection name, e.g. \"redis\", \"database\"."
+      "description": "Queue connection name, e.g. \"redis\", \"database\".",
+      "examples": [
+        "redis"
+      ]
     },
     "job": {
       "type": "string",
-      "description": "Resolved job class name."
+      "description": "Resolved job class name.",
+      "examples": [
+        "App\\Jobs\\SendWelcomeEmail"
+      ]
     },
     "id": {
       "type": "string",
-      "description": "Job ID."
+      "description": "Job ID.",
+      "examples": [
+        "9c2e1f7a-3b4d-4e5f-8a6b-1c2d3e4f5a6b"
+      ]
     },
     "attempts": {
       "type": "integer",
-      "description": "Number of attempts made."
+      "description": "Number of attempts made.",
+      "examples": [
+        1
+      ]
     },
     "hasFailed": {
       "type": "boolean",
-      "description": "Whether the job was marked as failed."
+      "description": "Whether the job was marked as failed.",
+      "examples": [
+        false
+      ]
     },
     "isReleased": {
       "type": "boolean",
-      "description": "Whether the job was released back to the queue."
+      "description": "Whether the job was released back to the queue.",
+      "examples": [
+        false
+      ]
     },
     "isDeleted": {
       "type": "boolean",
-      "description": "Whether the job was deleted from the queue."
+      "description": "Whether the job was deleted from the queue.",
+      "examples": [
+        true
+      ]
     },
     "maxTries": {
       "type": [
         "integer",
         "null"
       ],
-      "description": "Maximum retry attempts allowed."
+      "description": "Maximum retry attempts allowed.",
+      "examples": [
+        3
+      ]
     },
     "maxExceptions": {
       "type": [
         "integer",
         "null"
       ],
-      "description": "Maximum exceptions before the job is failed."
+      "description": "Maximum exceptions before the job is failed.",
+      "examples": [
+        3
+      ]
     },
     "timeout": {
       "type": [
         "integer",
         "null"
       ],
-      "description": "Job timeout in seconds."
+      "description": "Job timeout in seconds.",
+      "examples": [
+        60
+      ]
     },
     "retryUntil": {
       "type": [
         "integer",
         "null"
       ],
-      "description": "Timestamp after which the job should not be retried."
+      "description": "Timestamp after which the job should not be retried.",
+      "examples": [
+        1781272800
+      ]
     },
     "duration": {
       "type": "number",
-      "description": "Duration in microseconds. The client emits a string with ms suffix (e.g. \"5.123ms\"); the ingestion pipeline converts it to microseconds."
+      "description": "Duration in microseconds. The client sends a value with an ms suffix, such as \"5.123ms\". The ingestion pipeline converts it to microseconds.",
+      "examples": [
+        312000
+      ]
     },
     "requestId": {
       "type": "string",
-      "description": "Request ID from the X-Request-Id or Request-Id header, or a generated UUID. Set by AssignRequestId middleware into Laravel's shared log context."
-    },
-    "request_id": {
-      "type": "string",
-      "description": "Alias \u2014 same value as requestId, present if set via event context."
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
     }
   },
   "required": [
