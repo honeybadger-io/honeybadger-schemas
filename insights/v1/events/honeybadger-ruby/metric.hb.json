@@ -128,13 +128,6 @@
         ]
       ]
     },
-    "request_id": {
-      "type": "string",
-      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
-      "examples": [
-        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
-      ]
-    },
     "hostname": {
       "type": "string",
       "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
