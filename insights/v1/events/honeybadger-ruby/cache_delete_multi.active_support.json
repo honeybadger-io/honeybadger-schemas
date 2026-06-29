@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger-ruby/cache_delete_multi.active_support.json",
-  "title": "Cache: cache_delete_multi?",
+  "title": "Cache: cache_delete_multi",
   "description": "A Rails multi-key cache delete.",
   "x-hb": {
     "notifiers": ["honeybadger-ruby"],

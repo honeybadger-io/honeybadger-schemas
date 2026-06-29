@@ -58,7 +58,7 @@
     },
     "default_queue_latency": {
       "type": "number",
-      "description": "Latency of the default queue in seconds as returned by Sidekiq::Stats.",
+      "description": "Latency of the default queue in seconds (the raw Sidekiq::Stats value; note that per-queue latency under `queues` is reported in milliseconds).",
       "examples": [
         0.42
       ]

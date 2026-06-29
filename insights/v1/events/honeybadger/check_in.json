@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "insights/v1/events/honeybadger/check_in.json",
   "title": "Check-ins",
-  "description": "A heartbeat or report from a scheduled job or cron monitor. The state field shows whether the run succeeded, failed, or reported its status.",
+  "description": "A heartbeat or report from a scheduled job or cron monitor. The state field shows whether the monitor is reporting on schedule, missing a heartbeat, or paused.",
   "x-hb": {
     "category": "check_ins"
   },
