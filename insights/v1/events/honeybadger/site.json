@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger/site.json",
+  "title": "Uptime",
+  "description": "A snapshot of an uptime-monitored site's configuration. Honeybadger records this when a site is created or its config changes. Probe results use event_type \"uptime_check\" and include duration, location, site.id, site.name, and response.status_code.",
+  "x-hb": {
+    "category": "uptime"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "site"
+    },
+    "id": {
+      "type": "integer",
+      "description": "Site DB id (matches the site.id nested key on probe events).",
+      "examples": [
+        67890
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the site (matches site.name::str on probe events).",
+      "examples": [
+        "Marketing site"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "description": "Target URL being monitored.",
+      "examples": [
+        "https://www.example.com"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "up",
+        "down"
+      ],
+      "description": "Last observed reachability state of the site.",
+      "examples": [
+        "up"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "id"
+  ]
+}

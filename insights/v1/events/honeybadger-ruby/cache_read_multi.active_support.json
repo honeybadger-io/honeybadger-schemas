@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/cache_read_multi.active_support.json",
+  "title": "Cache: cache_read_multi",
+  "description": "A Rails multi-key cache read.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "cache",
+    "component": "Active Support"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "cache_read_multi.active_support"
+    },
+    "key": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cache keys read.",
+      "examples": [
+        [
+          "views/users/123",
+          "views/users/124"
+        ]
+      ]
+    },
+    "hits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Keys that were cache hits.",
+      "examples": [
+        [
+          "views/users/123"
+        ]
+      ]
+    },
+    "store": {
+      "type": "string",
+      "description": "Cache store class name.",
+      "examples": [
+        "ActiveSupport::Cache::RedisCacheStore"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds.",
+      "examples": [
+        0.88
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "examples": [
+        "d9f4a7b2c1e8d3f6a0b5"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/stats.autotuner.json",
+  "title": "Autotuner: stats",
+  "description": "Periodic Ruby process memory and object metrics from Autotuner. Field names depend on the Autotuner version and enabled checks.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "metrics",
+    "component": "Autotuner"
+  },
+  "examples": [
+    {
+      "event_type": "stats.autotuner",
+      "request_time": 145.2,
+      "gc_time": 12.4,
+      "minor_gc_count": 3,
+      "major_gc_count": 0,
+      "heap_pages": 5460,
+      "hostname": "web-1.example.com",
+      "environment": "production"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "stats.autotuner"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "additionalProperties": {
+    "type": "number",
+    "description": "Dynamic metric value (e.g. heap_allocated, heap_retained, live_objects, gc_count)."
+  },
+  "required": [
+    "event_type"
+  ]
+}

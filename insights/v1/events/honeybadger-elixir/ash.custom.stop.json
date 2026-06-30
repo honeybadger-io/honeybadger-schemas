@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/ash.custom.stop.json",
+  "title": "Ash: custom stop",
+  "description": "An Ash custom span finished. Honeybadger records this when :custom is included in trace_types. The default trace_types are [:custom, :action].",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "database",
+    "component": "Ash"
+  },
+  "examples": [
+    {
+      "event_type": "ash.custom.stop",
+      "span_id": "e1f3a5c7d9b2486e0a2c4f6b8d105397",
+      "name": "sync_external_accounts",
+      "parent_span_id": "a7c3e9f1b5d2480c9e6a1f3b7d5c2e80",
+      "duration": 32000,
+      "metadata": {
+        "source": "crm",
+        "batch_size": 100
+      },
+      "request_id": "F8ZBOg1zcBQDqDgAAADx"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "ash.custom.stop"
+    },
+    "span_id": {
+      "type": "string",
+      "description": "Unique ID for this span, for correlating nested spans.",
+      "examples": [
+        "e1f3a5c7d9b2486e0a2c4f6b8d105397"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Span name, typically the action or operation name.",
+      "examples": [
+        "sync_external_accounts"
+      ]
+    },
+    "parent_span_id": {
+      "type": "string",
+      "description": "ID of the parent span, enabling operation tree reconstruction.",
+      "examples": [
+        "a7c3e9f1b5d2480c9e6a1f3b7d5c2e80"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Span duration in microseconds.",
+      "examples": [
+        32000
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata set via set_metadata/2.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "source": "crm",
+          "batch_size": 100
+        }
+      ]
+    },
+    "error": {
+      "type": "object",
+      "description": "Present when the span records an error with set_error/2.",
+      "properties": {
+        "class": {
+          "type": "string",
+          "description": "Exception module name.",
+          "examples": [
+            "RuntimeError"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "Exception message.",
+          "examples": [
+            "external sync failed"
+          ]
+        }
+      }
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "span_id",
+    "name"
+  ]
+}

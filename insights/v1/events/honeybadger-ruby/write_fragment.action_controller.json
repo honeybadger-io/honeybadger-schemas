@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/write_fragment.action_controller.json",
+  "title": "Fragment cache: write_fragment",
+  "description": "A Rails fragment cache write.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "cache",
+    "component": "Action Controller"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "write_fragment.action_controller"
+    },
+    "key": {
+      "type": "string",
+      "description": "Fragment cache key.",
+      "examples": [
+        "views/users/123-20260612143000000000/a1b2c3d4e5f6"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds.",
+      "examples": [
+        0.62
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "key"
+  ]
+}

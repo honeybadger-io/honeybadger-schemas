@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/route.matched.json",
+  "title": "Laravel: route.matched",
+  "description": "Laravel matched a route before running the controller.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "request",
+    "component": "Routing"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "route.matched"
+    },
+    "uri": {
+      "type": "string",
+      "description": "Route URI pattern, e.g. \"users/{id}\".",
+      "examples": [
+        "users/{id}"
+      ]
+    },
+    "methods": {
+      "type": "string",
+      "description": "Comma-separated HTTP methods the route accepts.",
+      "examples": [
+        "GET,HEAD"
+      ]
+    },
+    "handler": {
+      "type": "string",
+      "description": "Controller@method string or closure class name.",
+      "examples": [
+        "App\\Http\\Controllers\\UserController@show"
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Named route, if defined.",
+      "examples": [
+        "users.show"
+      ]
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "uri",
+    "methods",
+    "handler"
+  ]
+}

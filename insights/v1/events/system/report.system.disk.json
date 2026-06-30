@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/system/report.system.disk.json",
+  "title": "System: report.system.disk",
+  "description": "Disk partition usage metrics from the Honeybadger CLI agent. Recorded once per non-pseudo partition per reporting interval.",
+  "x-hb": {
+    "notifiers": ["honeybadger-cli"],
+    "category": "system"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "report.system.disk"
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname of the machine running the agent.",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "ts": {
+      "type": "string",
+      "description": "ISO 8601 timestamp set by the CLI agent at collection time.",
+      "examples": [
+        "2026-06-12T14:30:00Z"
+      ]
+    },
+    "mountpoint": {
+      "type": "string",
+      "description": "Mount point of the partition, e.g. \"/\" or \"/data\".",
+      "examples": [
+        "/"
+      ]
+    },
+    "device": {
+      "type": "string",
+      "description": "Device path, e.g. \"/dev/sda1\".",
+      "examples": [
+        "/dev/sda1"
+      ]
+    },
+    "fstype": {
+      "type": "string",
+      "description": "Filesystem type, e.g. \"ext4\", \"apfs\".",
+      "examples": [
+        "ext4"
+      ]
+    },
+    "total_bytes": {
+      "type": "integer",
+      "description": "Total partition size in bytes.",
+      "examples": [
+        107374182400
+      ]
+    },
+    "used_bytes": {
+      "type": "integer",
+      "description": "Used bytes.",
+      "examples": [
+        58798465024
+      ]
+    },
+    "free_bytes": {
+      "type": "integer",
+      "description": "Free bytes.",
+      "examples": [
+        48575717376
+      ]
+    },
+    "used_percent": {
+      "type": "number",
+      "description": "Usage as a percentage (0.0–100.0), rounded to 2 decimal places.",
+      "examples": [
+        54.76
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "host",
+    "mountpoint",
+    "total_bytes",
+    "used_bytes"
+  ]
+}

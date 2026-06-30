@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/phoenix.live_view.handle_event.stop.json",
+  "title": "LiveView: handle_event",
+  "description": "A Phoenix LiveView handled a client event such as phx-click.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "request",
+    "component": "Phoenix LiveView"
+  },
+  "examples": [
+    {
+      "event_type": "phoenix.live_view.handle_event.stop",
+      "url": "https://www.example.com/users/42/edit",
+      "socket_id": "phx-F8ZBOg1zcBQDqDgAAACB",
+      "view": "MyAppWeb.UserLive.Show",
+      "assigns": {
+        "page_title": "Edit user",
+        "current_user_id": 42
+      },
+      "params": {
+        "user": {
+          "name": "Jane Doe"
+        }
+      },
+      "event": "save",
+      "duration": 28000,
+      "request_id": "b3d5a1f0c2e4968a7d1b3f5c9e0a2d4f"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "phoenix.live_view.handle_event.stop"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL of the LiveView at the time of the event.",
+      "examples": [
+        "https://www.example.com/users/42/edit"
+      ]
+    },
+    "socket_id": {
+      "type": "string",
+      "description": "LiveView socket ID.",
+      "examples": [
+        "phx-F8ZBOg1zcBQDqDgAAACB"
+      ]
+    },
+    "view": {
+      "type": "string",
+      "description": "LiveView module name.",
+      "examples": [
+        "MyAppWeb.UserLive.Show"
+      ]
+    },
+    "component": {
+      "type": "string",
+      "description": "LiveComponent module name, if applicable.",
+      "examples": [
+        "MyAppWeb.UserLive.FormComponent"
+      ]
+    },
+    "assigns": {
+      "type": "object",
+      "description": "Socket assigns at the time of the event.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "page_title": "Edit user",
+          "current_user_id": 42
+        }
+      ]
+    },
+    "params": {
+      "type": "object",
+      "description": "Params passed to the event handler.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "user": {
+            "name": "Jane Doe"
+          }
+        }
+      ]
+    },
+    "event": {
+      "type": "string",
+      "description": "Event name for handle_event events.",
+      "examples": [
+        "save"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in microseconds.",
+      "examples": [
+        28000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID generated at LiveView mount and shared by events on the same socket.",
+      "examples": [
+        "b3d5a1f0c2e4968a7d1b3f5c9e0a2d4f"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/absinthe.execute.operation.stop.json",
+  "title": "Absinthe: execute operation stop",
+  "description": "An Absinthe GraphQL operation finished.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "graphql",
+    "component": "Absinthe"
+  },
+  "examples": [
+    {
+      "event_type": "absinthe.execute.operation.stop",
+      "operation_name": "GetUser",
+      "operation_type": "query",
+      "selections": [
+        "user"
+      ],
+      "schema": "Elixir.MyAppWeb.Schema",
+      "duration": 25000,
+      "request_id": "F8ZBOg1zcBQDqDgAAADx"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "absinthe.execute.operation.stop"
+    },
+    "operation_name": {
+      "type": "string",
+      "description": "Named operation from the GraphQL query, if present.",
+      "examples": [
+        "GetUser"
+      ]
+    },
+    "operation_type": {
+      "type": "string",
+      "description": "Operation type: \"query\", \"mutation\", or \"subscription\".",
+      "examples": [
+        "query"
+      ]
+    },
+    "selections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Top-level field names selected in the operation.",
+      "examples": [
+        [
+          "user"
+        ]
+      ]
+    },
+    "schema": {
+      "type": "string",
+      "description": "Absinthe schema module name.",
+      "examples": [
+        "Elixir.MyAppWeb.Schema"
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "description": "GraphQL errors returned in the result, if any.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "examples": [
+        [
+          {
+            "message": "Cannot query field \"emails\" on type \"User\".",
+            "locations": [
+              {
+                "line": 2,
+                "column": 3
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Operation execution duration in microseconds.",
+      "examples": [
+        25000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/stats.solid_queue.json",
+  "title": "SolidQueue: stats",
+  "description": "Solid Queue cluster statistics from the Honeybadger agent.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "metrics",
+    "component": "Solid Queue"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "stats.solid_queue"
+    },
+    "jobs_in_progress": {
+      "type": "integer",
+      "description": "Jobs currently being executed.",
+      "examples": [
+        4
+      ]
+    },
+    "jobs_blocked": {
+      "type": "integer",
+      "description": "Jobs blocked waiting on a concurrency limit.",
+      "examples": [
+        2
+      ]
+    },
+    "jobs_failed": {
+      "type": "integer",
+      "description": "Jobs in the failed state.",
+      "examples": [
+        7
+      ]
+    },
+    "jobs_scheduled": {
+      "type": "integer",
+      "description": "Jobs scheduled for future execution.",
+      "examples": [
+        156
+      ]
+    },
+    "jobs_processed": {
+      "type": "integer",
+      "description": "Total jobs processed (lifetime counter).",
+      "examples": [
+        184329
+      ]
+    },
+    "active_workers": {
+      "type": "integer",
+      "description": "Number of active worker processes.",
+      "examples": [
+        2
+      ]
+    },
+    "active_dispatchers": {
+      "type": "integer",
+      "description": "Number of active dispatcher processes.",
+      "examples": [
+        1
+      ]
+    },
+    "queues": {
+      "type": "object",
+      "description": "Per-queue depth keyed by queue name.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "depth": {
+            "type": "integer",
+            "description": "Number of jobs in the queue."
+          }
+        }
+      },
+      "examples": [
+        {
+          "default": {
+            "depth": 23
+          },
+          "mailers": {
+            "depth": 2
+          }
+        }
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID from the active web request context, if any. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "worker-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/django.request.json",
+  "title": "Django: request",
+  "description": "A Django view finished handling an HTTP request.",
+  "x-hb": {
+    "notifiers": ["honeybadger-python"],
+    "category": "request",
+    "component": "Django"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "django.request"
+    },
+    "path": {
+      "type": "string",
+      "description": "Request path, e.g. \"/users/42\".",
+      "examples": [
+        "/users/123"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\".",
+      "examples": [
+        "GET"
+      ]
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code.",
+      "examples": [
+        200
+      ]
+    },
+    "view": {
+      "type": "string",
+      "description": "Resolved view function name.",
+      "examples": [
+        "user_detail"
+      ]
+    },
+    "module": {
+      "type": "string",
+      "description": "Module containing the view function.",
+      "examples": [
+        "myapp.views"
+      ]
+    },
+    "app": {
+      "type": "string",
+      "description": "Django app name from the URL resolver.",
+      "examples": [
+        "users"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Request duration in milliseconds.",
+      "examples": [
+        58.3214
+      ]
+    },
+    "params": {
+      "type": "object",
+      "description": "GET and POST params. Only present when include_params is enabled in insights_config.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "page": "2",
+          "sort": "name"
+        }
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from X-Request-ID header, request.id/request_id attribute, or a generated UUID. Set in event context at request start.",
+      "examples": [
+        "1f9f6f1a-2b3c-4d5e-8f6a-7b8c9d0e1f2a"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "path",
+    "method"
+  ]
+}

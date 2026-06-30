@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/heroku/postgres.json",
+  "title": "Heroku Postgres",
+  "description": "A Heroku Postgres log line from a Heroku log drain. Honeybadger recognizes it by proc_id == 'heroku-postgres'.",
+  "x-hb": {
+    "category": "metrics",
+    "component": "Heroku Postgres"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "examples": [
+        "logplex"
+      ]
+    },
+    "proc_id": {
+      "type": "string",
+      "const": "heroku-postgres",
+      "description": "Heroku process identifier. Always 'heroku-postgres' for this event."
+    },
+    "source": {
+      "type": "string",
+      "description": "Postgres source identifier, e.g. \"HEROKU_POSTGRESQL_CRIMSON\".",
+      "examples": [
+        "HEROKU_POSTGRESQL_CRIMSON"
+      ]
+    },
+    "addon": {
+      "type": "string",
+      "description": "Add-on name.",
+      "examples": [
+        "postgresql-curved-12345"
+      ]
+    },
+    "active_connections": {
+      "type": "integer",
+      "description": "Number of active database connections.",
+      "examples": [
+        12
+      ]
+    },
+    "waiting_connections": {
+      "type": "integer",
+      "description": "Number of connections waiting on a lock.",
+      "examples": [
+        0
+      ]
+    },
+    "index_cache_hit_rate": {
+      "type": "number",
+      "description": "Index cache hit rate (0.0–1.0).",
+      "examples": [
+        0.99957
+      ]
+    },
+    "table_cache_hit_rate": {
+      "type": "number",
+      "description": "Table cache hit rate (0.0–1.0).",
+      "examples": [
+        0.98309
+      ]
+    },
+    "load_avg_1m": {
+      "type": "number",
+      "description": "1-minute load average.",
+      "examples": [
+        0.31
+      ]
+    },
+    "load_avg_5m": {
+      "type": "number",
+      "description": "5-minute load average.",
+      "examples": [
+        0.28
+      ]
+    },
+    "load_avg_15m": {
+      "type": "number",
+      "description": "15-minute load average.",
+      "examples": [
+        0.25
+      ]
+    },
+    "read_iops": {
+      "type": "number",
+      "description": "Read I/O operations per second.",
+      "examples": [
+        12.5
+      ]
+    },
+    "write_iops": {
+      "type": "number",
+      "description": "Write I/O operations per second.",
+      "examples": [
+        35.625
+      ]
+    },
+    "tmp_disk_used": {
+      "type": "integer",
+      "description": "Bytes used on temporary disk.",
+      "examples": [
+        33849344
+      ]
+    },
+    "tmp_disk_available": {
+      "type": "integer",
+      "description": "Bytes available on temporary disk.",
+      "examples": [
+        72944943104
+      ]
+    },
+    "memory_total": {
+      "type": "integer",
+      "description": "Total memory in bytes.",
+      "examples": [
+        8589934592
+      ]
+    },
+    "memory_free": {
+      "type": "integer",
+      "description": "Free memory in bytes.",
+      "examples": [
+        1342177280
+      ]
+    },
+    "memory_cached": {
+      "type": "integer",
+      "description": "Cached memory in bytes.",
+      "examples": [
+        5368709120
+      ]
+    },
+    "memory_postgres": {
+      "type": "integer",
+      "description": "Memory used by Postgres in bytes.",
+      "examples": [
+        1610612736
+      ]
+    }
+  },
+  "required": [
+    "proc_id"
+  ]
+}

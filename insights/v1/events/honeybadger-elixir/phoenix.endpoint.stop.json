@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/phoenix.endpoint.stop.json",
+  "title": "Phoenix endpoint: stop",
+  "description": "A Phoenix or Plug request finished. Honeybadger records this from the Plug.Telemetry :stop event.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "request",
+    "component": "Phoenix"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "phoenix.endpoint.stop"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\".",
+      "examples": [
+        "GET"
+      ]
+    },
+    "request_path": {
+      "type": "string",
+      "description": "Request path, e.g. \"/users/42\".",
+      "examples": [
+        "/users/42"
+      ]
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code.",
+      "examples": [
+        200
+      ]
+    },
+    "params": {
+      "type": "object",
+      "description": "Request params map.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "id": "42"
+        }
+      ]
+    },
+    "route_type": {
+      "type": "string",
+      "enum": [
+        "controller",
+        "live",
+        "unknown"
+      ],
+      "description": "How the request was routed.",
+      "examples": [
+        "controller"
+      ]
+    },
+    "controller": {
+      "type": "string",
+      "description": "Phoenix controller module name. Present when route_type is \"controller\".",
+      "examples": [
+        "MyAppWeb.UserController"
+      ]
+    },
+    "action": {
+      "type": "string",
+      "description": "Controller action name. Present when route_type is \"controller\".",
+      "examples": [
+        "show"
+      ]
+    },
+    "live_view": {
+      "type": "string",
+      "description": "LiveView module name. Present when route_type is \"live\".",
+      "examples": [
+        "MyAppWeb.UserLive.Show"
+      ]
+    },
+    "live_action": {
+      "type": "string",
+      "description": "LiveView action atom. Present when route_type is \"live\".",
+      "examples": [
+        "show"
+      ]
+    },
+    "format": {
+      "type": "string",
+      "description": "Response format, e.g. \"html\", \"json\".",
+      "examples": [
+        "html"
+      ]
+    },
+    "view": {
+      "type": "string",
+      "description": "Phoenix view module name.",
+      "examples": [
+        "MyAppWeb.UserHTML"
+      ]
+    },
+    "template": {
+      "type": "string",
+      "description": "Template rendered.",
+      "examples": [
+        "show.html"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Total request duration in microseconds.",
+      "examples": [
+        150000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID set from the x-request-id response header or assigns. Present on all events fired within a request context.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "method",
+    "request_path",
+    "status"
+  ]
+}

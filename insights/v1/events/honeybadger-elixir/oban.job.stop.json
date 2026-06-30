@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/oban.job.stop.json",
+  "title": "Oban: job stop",
+  "description": "An Oban job finished without an error.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "jobs",
+    "component": "Oban"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "oban.job.stop"
+    },
+    "id": {
+      "type": "integer",
+      "description": "Oban job database ID.",
+      "examples": [
+        123456
+      ]
+    },
+    "worker": {
+      "type": "string",
+      "description": "Worker module name.",
+      "examples": [
+        "MyApp.Workers.WelcomeEmail"
+      ]
+    },
+    "queue": {
+      "type": "string",
+      "description": "Queue the job ran on.",
+      "examples": [
+        "default"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "description": "Final job state, e.g. \"success\", \"cancelled\", \"discard\".",
+      "examples": [
+        "success"
+      ]
+    },
+    "attempt": {
+      "type": "integer",
+      "description": "Attempt number (1-based).",
+      "examples": [
+        1
+      ]
+    },
+    "prefix": {
+      "type": "string",
+      "description": "Oban database prefix (schema).",
+      "examples": [
+        "public"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags assigned to the job.",
+      "examples": [
+        [
+          "mailer"
+        ]
+      ]
+    },
+    "args": {
+      "type": "object",
+      "description": "Job arguments map.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "user_id": 42
+        }
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Job execution duration in microseconds.",
+      "examples": [
+        350000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID propagated from the originating request via Oban job metadata, or a newly generated ID for background jobs.",
+      "examples": [
+        "f2a9c81d4e6b3a7f0c5d9e2b8a4f6c1d"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "worker",
+    "queue"
+  ]
+}

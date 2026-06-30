@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/absinthe.execute.operation.exception.json",
+  "title": "Absinthe: execute operation exception",
+  "description": "An Absinthe GraphQL operation raised an exception. Uses the same fields as absinthe.execute.operation.stop.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "graphql",
+    "component": "Absinthe"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "absinthe.execute.operation.exception"
+    },
+    "operation_name": {
+      "type": "string",
+      "description": "Named operation from the GraphQL query, if present.",
+      "examples": [
+        "CreateUser"
+      ]
+    },
+    "operation_type": {
+      "type": "string",
+      "description": "Operation type: \"query\", \"mutation\", or \"subscription\".",
+      "examples": [
+        "mutation"
+      ]
+    },
+    "selections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Top-level field names selected in the operation.",
+      "examples": [
+        [
+          "createUser"
+        ]
+      ]
+    },
+    "schema": {
+      "type": "string",
+      "description": "Absinthe schema module name.",
+      "examples": [
+        "Elixir.MyAppWeb.Schema"
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "description": "GraphQL errors returned in the result, if any.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "examples": [
+        [
+          {
+            "message": "An unexpected error occurred",
+            "path": [
+              "createUser"
+            ]
+          }
+        ]
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in microseconds before the exception was raised.",
+      "examples": [
+        12000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

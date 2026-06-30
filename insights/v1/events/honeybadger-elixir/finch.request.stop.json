@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/finch.request.stop.json",
+  "title": "Finch: request stop",
+  "description": "A Finch HTTP request finished. By default, Honeybadger stores only the hostname. Enable full_url in insights_config to include the path.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "http",
+    "component": "Finch"
+  },
+  "examples": [
+    {
+      "event_type": "finch.request.stop",
+      "name": "Elixir.MyApp.Finch",
+      "method": "GET",
+      "host": "api.example.com",
+      "url": "https://api.example.com/v1/users",
+      "status": 200,
+      "streaming": false,
+      "duration": 85000,
+      "request_id": "F8ZBOg1zcBQDqDgAAADx"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "finch.request.stop"
+    },
+    "name": {
+      "type": "string",
+      "description": "Finch pool name.",
+      "examples": [
+        "Elixir.MyApp.Finch"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\".",
+      "examples": [
+        "GET"
+      ]
+    },
+    "host": {
+      "type": "string",
+      "description": "Destination hostname.",
+      "examples": [
+        "api.example.com"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "description": "Full URL without query params. Present when full_url is true.",
+      "examples": [
+        "https://api.example.com/v1/users"
+      ]
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code. Present on successful (non-streaming) responses.",
+      "examples": [
+        200
+      ]
+    },
+    "streaming": {
+      "type": "boolean",
+      "description": "True for streaming requests where no status code is available.",
+      "examples": [
+        true
+      ]
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if the request failed.",
+      "examples": [
+        "timeout"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Request round-trip duration in microseconds.",
+      "examples": [
+        85000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "name",
+    "method",
+    "host"
+  ]
+}

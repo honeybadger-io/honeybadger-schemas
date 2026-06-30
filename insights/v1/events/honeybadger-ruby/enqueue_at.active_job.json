@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/enqueue_at.active_job.json",
+  "title": "ActiveJob: enqueue_at",
+  "description": "An Active Job job was scheduled to run later.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "jobs",
+    "component": "Active Job"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "enqueue_at.active_job"
+    },
+    "job_class": {
+      "type": "string",
+      "description": "ActiveJob class name.",
+      "examples": [
+        "WeeklyDigestJob"
+      ]
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Unique job identifier.",
+      "examples": [
+        "5f7e9d1c-3b2a-4c8e-a6f0-9d8c7b6a5e4f"
+      ]
+    },
+    "queue_name": {
+      "type": "string",
+      "description": "Queue the job is on.",
+      "examples": [
+        "low"
+      ]
+    },
+    "adapter_class": {
+      "type": "string",
+      "description": "ActiveJob adapter class, e.g. \"SidekiqAdapter\".",
+      "examples": [
+        "ActiveJob::QueueAdapters::SidekiqAdapter"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds.",
+      "examples": [
+        2.11
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails ActiveSupport::Notifications instrumenter UUID.",
+      "examples": [
+        "d9f4a7b2c1e8d3f6a0b5"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID from the active web request context, if any. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "job_class",
+    "job_id"
+  ]
+}

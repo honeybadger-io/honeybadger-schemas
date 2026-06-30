@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/sql.active_record.json",
+  "title": "Rails ActiveRecord",
+  "description": "A SQL query from Rails Active Record. Use request_id to group queries from the same HTTP request.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "database",
+    "component": "Active Record"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "sql.active_record"
+    },
+    "query": {
+      "type": "string",
+      "description": "The SQL text with bind parameters obfuscated.",
+      "examples": [
+        "SELECT \"users\".* FROM \"users\" WHERE \"users\".\"id\" = ? LIMIT ?"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Wall-clock time the query took, in milliseconds.",
+      "examples": [
+        2.34
+      ]
+    },
+    "cached": {
+      "type": "boolean",
+      "description": "Whether the query result was served from the ActiveRecord query cache.",
+      "examples": [
+        false
+      ]
+    },
+    "async": {
+      "type": "boolean",
+      "description": "Whether the query was executed asynchronously.",
+      "examples": [
+        false
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID. Shared by all events from the same HTTP request.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Unique identifier for the ActiveSupport::Notifications instrumentation request, assigned by Rails.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "query",
+    "duration"
+  ]
+}

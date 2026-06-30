@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/prompt.active_agent.json",
+  "title": "ActiveAgent: prompt",
+  "description": "A model prompt request made through ActiveAgent.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "llm",
+    "component": "Active Agent"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "prompt.active_agent"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Model provider name, e.g. \"openai\", \"anthropic\".",
+      "examples": [
+        "openai"
+      ]
+    },
+    "provider_module": {
+      "type": "string",
+      "description": "ActiveAgent provider module class name.",
+      "examples": [
+        "ActiveAgent::GenerationProvider::OpenAIProvider"
+      ]
+    },
+    "model": {
+      "type": "string",
+      "description": "Model identifier, e.g. \"gpt-4o\", \"claude-3-opus\".",
+      "examples": [
+        "gpt-4o"
+      ]
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Trace ID for correlating events within a single agent run.",
+      "examples": [
+        "7c9e6679-7425-40de-944b-e07fc1f90ae7"
+      ]
+    },
+    "message_count": {
+      "type": "integer",
+      "description": "Number of messages in the prompt context.",
+      "examples": [
+        4
+      ]
+    },
+    "stream": {
+      "type": "boolean",
+      "description": "Whether the response was streamed.",
+      "examples": [
+        false
+      ]
+    },
+    "finish_reason": {
+      "type": "string",
+      "description": "Stop reason returned by the provider, e.g. \"stop\", \"length\".",
+      "examples": [
+        "stop"
+      ]
+    },
+    "response_model": {
+      "type": "string",
+      "description": "Model identifier as returned by the provider response.",
+      "examples": [
+        "gpt-4o-2024-08-06"
+      ]
+    },
+    "response_id": {
+      "type": "string",
+      "description": "Provider-assigned response ID.",
+      "examples": [
+        "chatcmpl-Bx7Qk2T9fJ3aV1mN5pR8sLwY"
+      ]
+    },
+    "temperature": {
+      "type": "number",
+      "description": "Sampling temperature used.",
+      "examples": [
+        0.7
+      ]
+    },
+    "max_tokens": {
+      "type": "integer",
+      "description": "Max tokens parameter.",
+      "examples": [
+        1024
+      ]
+    },
+    "top_p": {
+      "type": "number",
+      "description": "Top-p nucleus sampling parameter.",
+      "examples": [
+        1.0
+      ]
+    },
+    "tool_count": {
+      "type": "integer",
+      "description": "Number of tools available to the model.",
+      "examples": [
+        3
+      ]
+    },
+    "has_instructions": {
+      "type": "boolean",
+      "description": "Whether a system instructions block was included.",
+      "examples": [
+        true
+      ]
+    },
+    "usage": {
+      "type": "object",
+      "description": "Token usage reported by the provider.",
+      "properties": {
+        "input_tokens": {
+          "type": "integer",
+          "examples": [
+            412
+          ]
+        },
+        "output_tokens": {
+          "type": "integer",
+          "examples": [
+            186
+          ]
+        },
+        "total_tokens": {
+          "type": "integer",
+          "examples": [
+            598
+          ]
+        }
+      }
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds.",
+      "examples": [
+        1820.43
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "provider",
+    "model"
+  ]
+}

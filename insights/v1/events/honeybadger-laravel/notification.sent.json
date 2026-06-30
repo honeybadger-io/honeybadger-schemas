@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/notification.sent.json",
+  "title": "Laravel: notification.sent",
+  "description": "A notification was sent.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "notifications",
+    "component": "Notifications"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "notification.sent"
+    },
+    "notification": {
+      "type": "string",
+      "description": "Notification class name.",
+      "examples": [
+        "App\\Notifications\\InvoicePaid"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "description": "Channel used.",
+      "examples": [
+        "mail"
+      ]
+    },
+    "notifiable": {
+      "type": "string",
+      "description": "Notifiable class name.",
+      "examples": [
+        "App\\Models\\User"
+      ]
+    },
+    "queue": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Queue name if queued.",
+      "examples": [
+        "default"
+      ]
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "notification",
+    "channel"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/render_partial.action_view.json",
+  "title": "Rails views",
+  "description": "A Rails view render. This shape is shared by template, partial, and collection render events. A typical request has one template render and several partial renders.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "view",
+    "component": "Action View"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "render_partial.action_view"
+    },
+    "view": {
+      "type": "string",
+      "description": "Path of the template file, e.g. \"[PROJECT_ROOT]/app/views/users/show.html.erb\".",
+      "examples": [
+        "[PROJECT_ROOT]/app/views/users/_user.html.erb"
+      ]
+    },
+    "layout": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Layout the template was rendered into, e.g. \"application\". Null when the render skipped layouts.",
+      "examples": [
+        null
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Render duration in milliseconds.",
+      "examples": [
+        1.8
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID. Shared by all events from the same HTTP request.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Unique identifier for the ActiveSupport::Notifications instrumentation request, assigned by Rails.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "view",
+    "duration"
+  ]
+}

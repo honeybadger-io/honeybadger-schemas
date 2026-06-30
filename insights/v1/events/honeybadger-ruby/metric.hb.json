@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/metric.hb.json",
+  "title": "Honeybadger Metric",
+  "description": "A metric recorded through Honeybadger's instrumentation API and flushed by the metrics registry. The metric_type field tells you whether the event came from gauge, increment_counter, decrement_counter, histogram, or time.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "metrics"
+  },
+  "examples": [
+    {
+      "event_type": "metric.hb",
+      "metric_name": "duration.process_action.action_controller",
+      "metric_type": "gauge",
+      "metric_source": "rails",
+      "samples": 20,
+      "interval": 60,
+      "total": 1820.5,
+      "min": 12.3,
+      "max": 210.4,
+      "avg": 91.03,
+      "latest": 88.6,
+      "hostname": "web-1.example.com",
+      "environment": "production"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "metric.hb"
+    },
+    "metric_name": {
+      "type": "string",
+      "description": "Name of the metric as passed to the recording call.",
+      "examples": [
+        "duration.process_action.action_controller"
+      ]
+    },
+    "metric_type": {
+      "type": "string",
+      "enum": [
+        "gauge",
+        "counter",
+        "histogram",
+        "timer"
+      ],
+      "description": "The metric type. Timers are gauges recorded via Honeybadger.time.",
+      "examples": [
+        "gauge"
+      ]
+    },
+    "samples": {
+      "type": "integer",
+      "description": "Number of observations recorded in this flush window.",
+      "examples": [
+        20
+      ]
+    },
+    "interval": {
+      "type": "integer",
+      "description": "Length of the aggregation/flush window in seconds (insights.registry_flush_interval, default 60).",
+      "examples": [
+        60
+      ]
+    },
+    "total": {
+      "type": "number",
+      "description": "Sum of all recorded values in the window (gauge, timer, and histogram metrics).",
+      "examples": [
+        1820.5
+      ]
+    },
+    "min": {
+      "type": "number",
+      "description": "Minimum recorded value in the window (gauge, timer, and histogram metrics).",
+      "examples": [
+        12.3
+      ]
+    },
+    "max": {
+      "type": "number",
+      "description": "Maximum recorded value in the window (gauge, timer, and histogram metrics).",
+      "examples": [
+        210.4
+      ]
+    },
+    "avg": {
+      "type": "number",
+      "description": "Average of recorded values in the window (gauge, timer, and histogram metrics).",
+      "examples": [
+        91.03
+      ]
+    },
+    "latest": {
+      "type": "number",
+      "description": "Most recently recorded value in the window (gauge, timer, and histogram metrics).",
+      "examples": [
+        88.6
+      ]
+    },
+    "counter": {
+      "type": "number",
+      "description": "Accumulated counter value for the window (counter metrics).",
+      "examples": [
+        42
+      ]
+    },
+    "bins": {
+      "type": "array",
+      "description": "Histogram bin counts as [upper_bound, count] pairs. The final bin's upper bound is 1e20, which represents infinity.",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "examples": [
+        [
+          [
+            0.5,
+            18
+          ],
+          [
+            1e+20,
+            2
+          ]
+        ]
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    },
+    "metric_source": {
+      "type": "string",
+      "description": "Source plugin or component that recorded the metric, e.g. \"rails\", \"sidekiq\", \"solid_queue\", \"net_http\", \"puma\", \"autotuner\".",
+      "examples": [
+        "rails"
+      ]
+    }
+  },
+  "additionalProperties": {
+    "description": "Additional dynamic attributes attached to the metric at recording time."
+  },
+  "required": [
+    "event_type",
+    "metric_name",
+    "metric_type"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-cli/report.system.memory.json",
+  "title": "CLI Agent: report.system.memory",
+  "description": "Virtual memory metrics collected by the Honeybadger CLI agent. Emitted once per reporting interval.",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "report.system.memory"
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname of the machine running the agent."
+    },
+    "ts": {
+      "type": "string",
+      "description": "ISO 8601 timestamp set by the CLI agent at collection time."
+    },
+    "total_bytes": {
+      "type": "integer",
+      "description": "Total virtual memory in bytes."
+    },
+    "used_bytes": {
+      "type": "integer",
+      "description": "Used memory in bytes."
+    },
+    "free_bytes": {
+      "type": "integer",
+      "description": "Free memory in bytes."
+    },
+    "available_bytes": {
+      "type": "integer",
+      "description": "Available memory in bytes (free + reclaimable)."
+    },
+    "used_percent": {
+      "type": "number",
+      "description": "Memory usage as a percentage (0.0\u2013100.0), rounded to 2 decimal places."
+    }
+  },
+  "required": [
+    "event_type",
+    "host",
+    "total_bytes",
+    "used_bytes"
+  ]
+}

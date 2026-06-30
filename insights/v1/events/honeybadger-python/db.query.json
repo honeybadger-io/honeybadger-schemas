@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/db.query.json",
+  "title": "DB: query",
+  "description": "A database query from the Django ORM or SQLAlchemy. Honeybadger skips queries that match exclude_queries.",
+  "x-hb": {
+    "notifiers": ["honeybadger-python"],
+    "category": "database"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "db.query"
+    },
+    "query": {
+      "type": "string",
+      "description": "SQL query string. Bind parameters may appear as literals, depending on the driver.",
+      "examples": [
+        "SELECT \"users\".* FROM \"users\" WHERE \"users\".\"id\" = %s LIMIT 1"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Query execution duration in milliseconds.",
+      "examples": [
+        2.4815
+      ]
+    },
+    "params": {
+      "description": "Query parameters. Only present when include_params is enabled in insights_config.",
+      "examples": [
+        [
+          123
+        ]
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from event context, ties this query to the enclosing request.",
+      "examples": [
+        "1f9f6f1a-2b3c-4d5e-8f6a-7b8c9d0e1f2a"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "query",
+    "duration"
+  ]
+}

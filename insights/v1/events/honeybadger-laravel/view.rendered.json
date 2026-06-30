@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-laravel/view.rendered.json",
+  "title": "Laravel: view.rendered",
+  "description": "A Blade view was rendered.",
+  "x-hb": {
+    "notifiers": ["honeybadger-laravel"],
+    "category": "view",
+    "component": "Blade"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "view.rendered"
+    },
+    "name": {
+      "type": "string",
+      "description": "View name, e.g. \"users.show\".",
+      "examples": [
+        "users.show"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "description": "Filesystem path to the view file.",
+      "examples": [
+        "/var/www/html/resources/views/users/show.blade.php"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in microseconds. The client sends a value with an ms suffix, such as \"5.123ms\". The ingestion pipeline converts it to microseconds.",
+      "examples": [
+        3500
+      ]
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Correlation ID for the request, set by the AssignRequestId middleware via Laravel's shared log context. The value comes from the Request-Id or X-Request-Id request header, or is a generated UUID. Present only when that middleware is enabled.",
+      "examples": [
+        "f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "name",
+    "path"
+  ]
+}

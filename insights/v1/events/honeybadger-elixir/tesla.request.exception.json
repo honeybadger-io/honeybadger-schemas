@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/tesla.request.exception.json",
+  "title": "Tesla: request exception",
+  "description": "A Tesla HTTP request raised an exception. By default, Honeybadger stores only the hostname. Enable full_url in insights_config to include the path. If Tesla uses Finch, Honeybadger records the Finch event instead of a second Tesla event.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "http",
+    "component": "Tesla"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "tesla.request.exception"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method in uppercase, e.g. \"GET\", \"POST\".",
+      "examples": [
+        "POST"
+      ]
+    },
+    "host": {
+      "type": "string",
+      "description": "Destination hostname.",
+      "examples": [
+        "api.example.com"
+      ]
+    },
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP response status code.",
+      "examples": [
+        500
+      ]
+    },
+    "url": {
+      "type": "string",
+      "description": "Full request URL. Present when full_url is true.",
+      "examples": [
+        "https://api.example.com/v1/payments"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Request round-trip duration in microseconds.",
+      "examples": [
+        30000
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "method",
+    "host"
+  ]
+}

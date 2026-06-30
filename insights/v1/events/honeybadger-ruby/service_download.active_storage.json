@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/service_download.active_storage.json",
+  "title": "ActiveStorage: service_download",
+  "description": "A Rails Active Storage download.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "storage",
+    "component": "Active Storage"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "service_download.active_storage"
+    },
+    "key": {
+      "type": "string",
+      "description": "Storage key (blob identifier).",
+      "examples": [
+        "xtapjjcjiudrlk3tdwirsnz4dawl"
+      ]
+    },
+    "service": {
+      "type": "string",
+      "description": "Storage service name, e.g. \"disk\", \"s3\".",
+      "examples": [
+        "S3"
+      ]
+    },
+    "checksum": {
+      "type": "string",
+      "description": "Content checksum.",
+      "examples": [
+        "9X2k1mFqLpZ3vR8sT4wYuA=="
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds.",
+      "examples": [
+        45.3
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "Rails instrumenter UUID.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Merged globally by the Honeybadger agent.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

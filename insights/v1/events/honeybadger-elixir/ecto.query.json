@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-elixir/ecto.query.json",
+  "title": "Ecto: query",
+  "description": "An Ecto repository ran a database query. The event_type comes from the repo telemetry_prefix, so [:my_app, :repo, :query] becomes \"my_app.repo.query\". Honeybadger skips transaction bookkeeping, schema migrations, and Oban job table queries by default.",
+  "x-hb": {
+    "notifiers": ["honeybadger-elixir"],
+    "category": "database",
+    "component": "Ecto"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "examples": [
+        "my_app.repo.query"
+      ]
+    },
+    "query": {
+      "type": "string",
+      "description": "Obfuscated SQL with bind parameters replaced by ?.",
+      "examples": [
+        "SELECT u0.\"id\", u0.\"email\", u0.\"name\" FROM \"users\" AS u0 WHERE (u0.\"id\" = $?)"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "Table/source name the query targets.",
+      "examples": [
+        "users"
+      ]
+    },
+    "query_time": {
+      "type": "number",
+      "description": "Time spent executing the query in microseconds.",
+      "examples": [
+        3200
+      ]
+    },
+    "decode_time": {
+      "type": "number",
+      "description": "Time spent decoding the result in microseconds.",
+      "examples": [
+        180
+      ]
+    },
+    "queue_time": {
+      "type": "number",
+      "description": "Time spent waiting for a database connection in microseconds.",
+      "examples": [
+        45
+      ]
+    },
+    "total_time": {
+      "type": "number",
+      "description": "Total time including queue, query, and decode in microseconds.",
+      "examples": [
+        3425
+      ]
+    },
+    "stacktrace": {
+      "type": "array",
+      "description": "Formatted call stack at query time. Present when include_stacktrace is true and the repo has stacktrace enabled.",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "examples": [
+        [
+          [
+            "lib/my_app/accounts.ex:27",
+            "MyApp.Accounts.get_user!/1"
+          ],
+          [
+            "lib/my_app_web/controllers/user_controller.ex:14",
+            "MyAppWeb.UserController.show/2"
+          ]
+        ]
+      ]
+    },
+    "params": {
+      "type": "array",
+      "description": "Query parameters. Present when include_params is true.",
+      "items": {},
+      "examples": [
+        [
+          42
+        ]
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID from the current EventContext.",
+      "examples": [
+        "F8ZBOg1zcBQDqDgAAADx"
+      ]
+    },
+    "idle_time": {
+      "type": "number",
+      "description": "Time the connection spent idle before the query in microseconds.",
+      "examples": [
+        120000
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "query"
+  ]
+}

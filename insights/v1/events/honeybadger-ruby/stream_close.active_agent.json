@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-ruby/stream_close.active_agent.json",
+  "title": "ActiveAgent: stream_close",
+  "description": "An ActiveAgent streaming response closed. Honeybadger forwards the ActiveAgent payload as-is, so extra fields depend on your ActiveAgent version and provider.",
+  "x-hb": {
+    "notifiers": ["honeybadger-ruby"],
+    "category": "llm",
+    "component": "Active Agent"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "stream_close.active_agent"
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Trace ID for correlating events within a single agent run.",
+      "examples": [
+        "7c9e6679-7425-40de-944b-e07fc1f90ae7"
+      ]
+    },
+    "provider": {
+      "type": "string",
+      "description": "Model provider name.",
+      "examples": [
+        "openai"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in milliseconds.",
+      "examples": [
+        1864.92
+      ]
+    },
+    "instrumenter_id": {
+      "type": "string",
+      "description": "ActiveSupport::Notifications instrumenter UUID, added by the Honeybadger notification subscriber.",
+      "examples": [
+        "d6a5b3f4c2e1908a7b6c"
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Rails request UUID, present on any event fired during a web request context. Set by the Honeybadger agent when available.",
+      "examples": [
+        "0f5e4bb2-3c46-4b1c-91d5-2f4e8a6b9c01"
+      ]
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Server hostname. Attached to every event by default (events.attach_hostname).",
+      "examples": [
+        "web-1.example.com"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Application environment, e.g. \"production\". Attached to every event by default (events.attach_environment).",
+      "examples": [
+        "production"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "event_type"
+  ]
+}

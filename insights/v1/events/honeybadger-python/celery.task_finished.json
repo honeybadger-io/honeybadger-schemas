@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/celery.task_finished.json",
+  "title": "Celery: task_finished",
+  "description": "A Celery task finished, whether it succeeded or failed.",
+  "x-hb": {
+    "notifiers": ["honeybadger-python"],
+    "category": "jobs",
+    "component": "Celery"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "celery.task_finished"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Celery task UUID.",
+      "examples": [
+        "9c5e8a2f-1b3d-4c6e-9f7a-2d4b6c8e0a1f"
+      ]
+    },
+    "task_name": {
+      "type": "string",
+      "description": "Fully qualified task name, e.g. \"myapp.tasks.send_email\".",
+      "examples": [
+        "myapp.tasks.send_email"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "description": "Final task state, e.g. \"SUCCESS\", \"FAILURE\", \"RETRY\".",
+      "examples": [
+        "SUCCESS"
+      ]
+    },
+    "retries": {
+      "type": "integer",
+      "description": "Number of retries so far.",
+      "examples": [
+        0
+      ]
+    },
+    "group": {
+      "type": "string",
+      "description": "Celery group ID if the task is part of a group.",
+      "examples": [
+        "5a7d3e9b-8c1f-4b2a-9d6e-3f5a7c9e1b4d"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Task execution duration in milliseconds.",
+      "examples": [
+        845.2103
+      ]
+    },
+    "args": {
+      "type": "array",
+      "description": "Positional task arguments. Only present when include_args is enabled in insights_config.",
+      "items": {},
+      "examples": [
+        [
+          "user@example.com"
+        ]
+      ]
+    },
+    "kwargs": {
+      "type": "object",
+      "description": "Keyword task arguments (filtered). Only present when include_args is enabled in insights_config.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "subject": "Welcome to MyApp"
+        }
+      ]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Request ID propagated from the originating request via Celery task headers.",
+      "examples": [
+        "1f9f6f1a-2b3c-4d5e-8f6a-7b8c9d0e1f2a"
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "task_id",
+    "task_name",
+    "state"
+  ]
+}
