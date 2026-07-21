@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/oban.refresher_exception.json",
+  "title": "Oban: refresher_exception",
+  "description": "Oban's refresher loop, which refreshes producer records and cleans up stale ones, raised an exception.",
+  "x-hb": {
+    "notifiers": [
+      "honeybadger-python"
+    ],
+    "category": "jobs",
+    "component": "Oban"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "oban.refresher_exception"
+    },
+    "loop": {
+      "type": "string",
+      "const": "refresher",
+      "description": "Name of the Oban maintenance loop that raised."
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "oban.refresher.refresh.exception",
+        "oban.refresher.cleanup.exception"
+      ],
+      "description": "The underlying Oban telemetry event name.",
+      "examples": [
+        "oban.refresher.refresh.exception"
+      ]
+    },
+    "error_type": {
+      "type": "string",
+      "description": "Exception class name.",
+      "examples": [
+        "OperationalError"
+      ]
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Exception message.",
+      "examples": [
+        "connection to server was lost"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration of the failed loop iteration in milliseconds.",
+      "examples": [
+        3.1415
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "loop",
+    "event"
+  ]
+}
