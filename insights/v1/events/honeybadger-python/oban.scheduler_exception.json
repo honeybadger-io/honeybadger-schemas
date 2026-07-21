@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-python/oban.scheduler_exception.json",
+  "title": "Oban: scheduler_exception",
+  "description": "Oban's cron scheduler loop raised an exception while evaluating schedules.",
+  "x-hb": {
+    "notifiers": [
+      "honeybadger-python"
+    ],
+    "category": "jobs",
+    "component": "Oban"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "oban.scheduler_exception"
+    },
+    "loop": {
+      "type": "string",
+      "const": "scheduler",
+      "description": "Name of the Oban maintenance loop that raised."
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "oban.scheduler.evaluate.exception"
+      ],
+      "description": "The underlying Oban telemetry event name.",
+      "examples": [
+        "oban.scheduler.evaluate.exception"
+      ]
+    },
+    "error_type": {
+      "type": "string",
+      "description": "Exception class name.",
+      "examples": [
+        "OperationalError"
+      ]
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Exception message.",
+      "examples": [
+        "connection to server was lost"
+      ]
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration of the failed loop iteration in milliseconds.",
+      "examples": [
+        3.1415
+      ]
+    }
+  },
+  "required": [
+    "event_type",
+    "loop",
+    "event"
+  ]
+}
