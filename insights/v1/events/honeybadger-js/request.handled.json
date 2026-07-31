@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-js/request.handled.json",
+  "title": "JavaScript: request.handled",
+  "description": "An inbound HTTP request finished. Emitted by the Express, Fastify, and AWS Lambda integrations in @honeybadger-io/js, and by withHoneybadger in @honeybadger-io/nextjs, when insights.http is enabled.",
+  "x-hb": {
+    "notifiers": ["@honeybadger-io/js", "@honeybadger-io/nextjs"],
+    "category": "request"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "request.handled"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method, e.g. \"GET\", \"POST\".",
+      "examples": ["GET"]
+    },
+    "path": {
+      "type": "string",
+      "description": "Request path.",
+      "examples": ["/users/123"]
+    },
+    "route": {
+      "type": ["string", "null"],
+      "description": "Matched route pattern when the framework provides one (for example Express `req.route.path` or Fastify `req.routeOptions.url`). Not set for AWS Lambda.",
+      "examples": ["/users/:id"]
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code.",
+      "examples": [200]
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Request duration in milliseconds.",
+      "examples": [42]
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Unique ID for this request. Read from the `x-request-id` or `request-id` header, or generated when neither is present. Merged from event context.",
+      "examples": ["f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"]
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "ID that may span related requests. Read from the `x-correlation-id` or `x-amzn-trace-id` header, or falls back to `request_id`. Merged from event context.",
+      "examples": ["f3b2c1d0-4e5a-4b6c-8d7e-9f0a1b2c3d4e"]
+    }
+  },
+  "required": [
+    "event_type",
+    "method",
+    "path",
+    "status",
+    "duration",
+    "request_id",
+    "correlation_id"
+  ]
+}
