@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "insights/v1/events/honeybadger-js/log.json",
+  "title": "JavaScript: log",
+  "description": "A console log message forwarded to Insights when insights.console is enabled.",
+  "x-hb": {
+    "notifiers": ["@honeybadger-io/js"],
+    "category": "log"
+  },
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "const": "log"
+    },
+    "severity": {
+      "type": "string",
+      "description": "Console method that produced the message, e.g. \"log\", \"info\", \"warn\", \"error\", \"debug\".",
+      "examples": ["info"]
+    },
+    "message": {
+      "type": "string",
+      "description": "First argument when it is a string. Omitted when the first argument is not a string.",
+      "examples": ["User signed in"]
+    },
+    "args": {
+      "type": "array",
+      "description": "Remaining console arguments when the first argument is a string, or all arguments otherwise.",
+      "items": {},
+      "examples": [[123, { "ok": true }]]
+    }
+  },
+  "required": ["event_type", "severity"]
+}
